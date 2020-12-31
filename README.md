@@ -3,26 +3,26 @@
 Falcom's Kiseki (Trails, Legend of Heroes, 軌跡)… for Linux!
 ============================================================
 
-This repository unofficially hosts [Lutris-based **Linux**
-installers][lutris-aokana] for *all* entries in [Falcom][falcom]'s acclaimed
-[*Kiseki* (i.e., *Trails*, *Legend of Heroes*, 軌跡) universe][kiseki]: the
-longest-running continuously interconnected Japanese role-playing (JRPG)
-series now spanning three decades of active development.
+This repository unofficially hosts [Lutris-based **Linux** installers][lutris]
+for *all* entries in [Falcom][falcom]'s acclaimed [*Kiseki* (i.e., *Trails*,
+*Legend of Heroes*, 軌跡) universe][kiseki]: the longest-running continuously
+interconnected Japanese role-playing (JRPG) series now spanning three decades
+of active development.
 
-This repository hosts installers with out-of-the-box support for controllers,
-in-game cutscenes and videos, and full Japanese voice acting with fully
-localized English and Simplified Chinese subtitles – including:
+This repository hosts installers with out-of-the-box support for popular
+controllers, in-game cutscenes and videos, and full Japanese voice acting with
+fully localized English and Simplified Chinese subtitles – including:
 
 * High-quality voice acting converted by [Zhenjian Yang][zhenjian-yang]'s
-  [third-party SoraVoice project][sora-voice] from the Japan-only "Evolution"
-  Vita ports of the original *Sora no Kiseki* trilogy (\ *Sora no Kiseki FC*,
-  *Sora no Kiseki SC*, *Sora no Kiseki the 3rd*\ ).
-* High-quality unofficial translations by the [third-party GeoFront
-  localization group][geofront] for those entries still lacking official
-  translations (\ *Zero no Kiseki*, *Ao no Kiseki*\ ).
+  [third-party SoraVoice library][sora-voice] from the Japan-only "Evolution"
+  Vita ports of the original *Sora no Kiseki* trilogy (i.e., *Sora no Kiseki
+  FC*, *Sora no Kiseki SC*, *Sora no Kiseki the 3rd*).
+* High-quality unofficial translations by the [third-party localization group
+* GeoFront][geofront] for those entries still lacking official
+  translations (i.e., *Zero no Kiseki*, *Ao no Kiseki*).
 
-This repository also hosts a [central hub for discussing and resolving issues
-in Linux emulation across all *Kiseki* entries][local-issues]. Help us get a
+This repository is also a [central hub for discussing and resolving issues in
+Linux emulation across all *Kiseki* entries][local-issues]. Help us get a
 better idea of the state of these installers by **[submitting a new issue
 documenting your installation and playthrough experience][local-issue-new].**
 
@@ -51,7 +51,7 @@ If you enjoy this, you might also enjoy:
 
 [chuuni]: https://forums.fuwanovel.net/topic/1820-chuuni-what-is-this-genre
 [falcom]: https://en.wikipedia.org/wiki/Nihon_Falcom
-[geofront]: 
+[geofront]: https://geofront.esterior.net
 [kiseki]: https://en.wikipedia.org/wiki/Trails_(series)
 [leycec]: https://github/leycec
 [leycec-aokana]: https://github.com/leycec/aokana-linux
