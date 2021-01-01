@@ -1,0 +1,34 @@
+results:
+  - name: "The Legend of Heroes: Trails in the Sky"
+    version: "Steam with SoraVoice"
+    game_slug: sora-no-kiseki-voice-steam
+    slug: sora-no-kiseki-voice-steam-installer
+    runner: steam
+
+    script:
+      files:
+        # Manually browsed files, intentionally listed *BEFORE* downloads to
+        # guarantee Lutris requests the user browse these files first.
+
+        # Automated downloads.
+        - lavf: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
+
+      game:
+        appid: 251150
+
+      installer:
+        - task:
+            description: Installing Quartz...
+            name: winetricks
+            app: quartz
+            prefix: $GAMEDIR
+        - task:
+            description: Installing "amstream"...
+            name: winetricks
+            app: amstream
+            prefix: $GAMEDIR
+        - task:
+            description: Installing LAVFilters...
+            name: wineexec
+            executable: lavf
+            prefix: $GAMEDIR

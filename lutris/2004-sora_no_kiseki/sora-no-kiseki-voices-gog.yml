@@ -1,0 +1,77 @@
+#FIXME: We may also want to:
+#* Disable "winegstreamer" with "winecfg" (or something).
+#* Install "dinput8", "directshow", "xvid", and/or "corefonts" with
+#  "winetricks".
+
+results:
+  - name: "The Legend of Heroes: Trails in the Sky"
+    version: "GOG with SoraVoice"
+    game_slug: sora-no-kiseki-voice-gog
+    slug: sora-no-kiseki-voice-gog-installer
+    runner: wine
+
+    script:
+      files:
+        # Manually browsed files, intentionally listed *BEFORE* downloads to
+        # guarantee Lutris requests the user browse these files first.
+        - gog_installer: N/A:Select GOG Windows installer
+        - voices_files: N/A:Select 1.92GB Japanese dialog voices files archive (i.e., "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip")
+        - voices_files: N/A:Select 1.92GB Japanese dialog voices files archive (i.e., "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip")
+
+        # Automated downloads.
+        - innoextract: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
+        - lavf: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
+        - dsounddll: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/dsound_dll_20201001.7z
+        - soravoice: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
+        - soravoicescripts: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
+
+      game:
+        exe: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/ed6_win.exe
+        arch: win64
+        prefix: $GAMEDIR
+
+      installer:
+        - task:
+            description: Creating Wine prefix...
+            name: create_prefix
+            arch: win64
+            install_gecko: false
+            install_mono: false
+            prefix: $GAMEDIR
+        - extract:
+            file: $innoextract
+            dst: $CACHE/innoextract
+        - execute:
+            file: $CACHE/innoextract/innoextract
+            args: -d "${CACHE}" "${gog_installer}"
+            args: --extract "${gog_installer}" --gog --output-dir "${CACHE}"
+        - copy:
+            src: $CACHE
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        # - task:
+        #   name: wineexec
+        #   executable: gog
+        #   prefix: $GAMEDIR
+        - extract:
+            file: $soravoice
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        - task:
+            description: Installing Quartz...
+            name: winetricks
+            app: quartz
+            prefix: $GAMEDIR
+        - task:
+            description: Installing "amstream"...
+            name: winetricks
+            app: amstream
+            prefix: $GAMEDIR
+        - task:
+            description: Installing LAVFilters...
+            name: wineexec
+            executable: lavf
+            prefix: $GAMEDIR
+        - task:
+            description: Configuring "Trails in the Sky"...
+            name: wineexec
+            executable: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/Config.exe
+            prefix: $GAMEDIR
