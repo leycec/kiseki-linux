@@ -2,9 +2,9 @@
 
 results:
   - name: "The Legend of Heroes: Trails in the Sky"
-    version: "Steam with SoraVoice"
-    game_slug: sora-no-kiseki-voice-steam
-    slug: sora-no-kiseki-voice-steam-installer
+    version: "64-bit Steam for Windows + SoraVoice"
+    game_slug: sora-no-kiseki-fc-steam-voiced
+    slug: sora-no-kiseki-fc-steam-voiced-installer
     runner: steam
 
     script:

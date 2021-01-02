@@ -65,7 +65,8 @@ This repository currently hosts installers for only a subset of the available
 *Kiseki* titles. As we continue playing through the series ourselves,
 additional installers for later *Kiseki* titles will be added.
 
-We appreciate your patience as we walk these verbose trails... together.
+We apologize for this inconvenience and hope you enjoy your stay in the Liberl
+Kingdom.
 
 The Legend of Heroes: Trails in the Sky (Sora no Kiseki FC)
 -----------------------------------------------------------
@@ -74,14 +75,15 @@ The Legend of Heroes: Trails in the Sky (Sora no Kiseki FC)
 Densetsu: Sora no Kiseki First Chapter (FC)*) is the first entry in the
 *Kiseki* series, originally released in 2004 for the PlayStation Portable (PSP)
 and subsequently ported first to the PlayStation Vita in 2015 as *Eiyuu
-Densetsu: Sora no Kiseki FC Evolution* and then to PC in 2016.
+Densetsu: Sora no Kiseki FC Evolution* and then to PC in 2016 via both GOG_ and
+Steam_.
 
 These instructions assume you've purchased and downloaded the `Good Old Games
-(GOG) version of this entry <sora fc GOG_>`__. We hope to add an equivalent
-Steam installer (which is somewhat more difficult to support) at a later date.
+(GOG) version of this game <sora fc GOG_>`__. We hope to add an equivalent
+Steam installer at a later date.
 
 #. Download **Japanese dialog voices** converted from the *Evolution* Vita
-   port: [#sora fc dialog]_
+   port: [#sora-fc-dialog]_
 
    #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc dialog voices
       folder_>`__.
@@ -91,7 +93,7 @@ Steam installer (which is somewhat more difficult to support) at a later date.
       ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Mod 20180518 Update.zip``.
 
 #. Download **Japanese battle voices** converted from the original PSP release:
-   [#sora fc battle]_
+   [#sora-fc-battle]_
 
    #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc battle voices
       folder_>`__.
@@ -106,27 +108,32 @@ Steam installer (which is somewhat more difficult to support) at a later date.
 
 #. After installation, enable Japanese battle voices:
 
-   #. Run *The Legend of Heroes: Trails in the Sky.*
+   #. Run the game.
    #. Open the *Options* menu.
    #. Switch the *Voices* setting to Japanese.
 
 Brace for awesomeness. Your trail begins today.
 
-.. [#sora fc dialog]
-   Japanese dialog voice files are also available from various other sources
-   (e.g., nyaa), typically under a directory named ``The Legend of Heroes -
-   Trails in the Sky FC - Evolution Voices Mod/`` whose parent directory also
-   contains a copy of the GOG version of this game. Please download from these
-   sources *only* if you have already purchased this game. Falcom deserves all
-   of your wallet for their continued service to humanity.
+.. [#sora-fc-dialog]
+   Japanese dialog voice files are also available from other sites (e.g.,
+   nyaa), typically under a directory named ``The Legend of Heroes - Trails in
+   the Sky FC - Evolution Voices Mod/`` whose parent directory also contains a
+   copy of the GOG version of this game. Please download from these sites
+   *only* if you have already purchased this game. Falcom deserves all of your
+   wallet for their continued service to humanity.
 
-.. [#sora fc battle]
-   Japanese battle voice files are also available from various other sources
-   (e.g., nyaa), typically under a directory named ``The Legend of Heroes -
-   Trails in the Sky FC - Japanese Battle Voices/`` whose parent directory also
-   contains a copy of the GOG version of this game. Please download from these
-   sources *only* if you have already purchased this game. Falcom deserves all
-   of your wallet for their continued service to humanity.
+.. [#sora-fc-battle]
+   Japanese battle voice files are also available from other sites (e.g.,
+   nyaa), typically under a directory named ``The Legend of Heroes - Trails in
+   the Sky FC - Japanese Battle Voices/`` whose parent directory also contains
+   a copy of the GOG version of this game. Please download from these sites
+   *only* if you have already purchased this game. Falcom deserves all of your
+   wallet for their continued service to humanity.
+
+The Legend of Heroes: Trails in the Sky SC (Sora no Kiseki SC)
+--------------------------------------------------------------
+
+*To be announced...* sometime possibly soon!
 
 See Also
 ========

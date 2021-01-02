@@ -8,9 +8,18 @@
 
 results:
   - name: "The Legend of Heroes: Trails in the Sky"
-    version: "GOG with SoraVoice"
-    game_slug: sora-no-kiseki-voice-gog
-    slug: sora-no-kiseki-voice-gog-installer
+
+    # This version intentionally does *NOT* contain the magic substring "GOG",
+    # as doing so magically enables non-ideal GOG integration in Lutris. Since
+    # GOG users commonly prefer to manage GOG downloads themselves rather than
+    # implicitly through Lutris, the current approach is typically preferable.
+    # GOG users instead preferring Lutris to manage GOG downloads are
+    # encouraged to add the following line to the "game:" section below:
+    #     gogid: 1207665083
+    version: "64-bit Windows + SoraVoice"
+
+    game_slug: sora-no-kiseki-fc-gog-voiced
+    slug: sora-no-kiseki-fc-gog-voiced-installer
     runner: wine
 
     script:
@@ -21,7 +30,7 @@ results:
         - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" (1.92GB)
         - soravoice_mod_zip: N/A:Select Japanese dialog voices mod archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Mod 20180518 Update.zip" (2.8MB)
         - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT1A.dat" (66.4MB)
-        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" (66.4MB)
+        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" (17KB)
 
         # Automated downloads.
         - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
@@ -31,7 +40,7 @@ results:
         - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
 
       game:
-        exe: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/ed6_win.exe
+        exe: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/ed6_win.exe
         arch: win64
         prefix: $GAMEDIR
 
@@ -53,40 +62,61 @@ results:
             install_mono: false
             prefix: $GAMEDIR
         - extract:
+            description: Installing innoextract...
             file: $innoextract_zip
             dst: $CACHE/innoextract
         - execute:
+            description: Creating "Trails in the Sky" directory...
+            command: mkdir -p "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced"
+        #FIXME: Ahah! We've figured it out, basically. GOG ships a
+        #supplementary "bin" file as well, which we're not selecting above. We
+        #need to instruct Lutris to cache these two files together in the same
+        #directory or... something. *sigh*
+        - execute:
+            description: Installing "Trails in the Sky"...
             file: $CACHE/innoextract/innoextract
-            args: --extract "${gog_exe}" --gog --output-dir "${GAMEDIR}/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky"
+            args: -d "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced" "${gog_exe}"
+        - merge:
+            dst: $GAMEDIR
+            src: $CACHE
         - extract:
+            description: Installing Japanese dialog voice files...
             file: $soravoice_files_zip
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         - extract:
+            description: Installing Japanese dialog voice mod...
             file: $soravoice_mod_zip
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         - extract:
+            description: Installing SoraVoice-patched "dsound.dll"...
             file: $soravoice_dsound_zip
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         - extract:
+            description: Installing SoraVoice scripts...
             file: $soravoice_scripts_zip
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         # Do *NOT* extract the "SoraVoice" archive directly into the game
         # directory. This archive contains a problematic top-level shared
-        # library (i.e., "dinput8.dll") that conflicts with the preferable
-        # shared library already installed from the $soravoice_dsound_zip file
-        # (i.e., "dsound.dll").
+        # library (i.e., "dinput8.dll") that both disables controller support
+        # and conflicts with the comparable shared library provided by the
+        # $soravoice_dsound_zip file (i.e., "dsound.dll"), which does *NOT*
+        # disable controller support and is thus vastly preferable.
         - extract:
+            description: Extracting SoraVoice...
             file: $soravoice_zip
             dst: $CACHE/soravoice
         - copy:
+            description: Installing SoraVoice...
             src: $CACHE/soravoice/voice
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/voice
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
         - copy:
+            description: Installing Japanese battle voice data file...
             src: $battle_dat_file
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         - copy:
+            description: Installing Japanese battle voice directory file...
             src: $battle_dir_file
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         #FIXME: We may need to enable these three libraries as "n"-style native
         #overrides under the "wine:" section above.
         - task:
@@ -100,7 +130,7 @@ results:
             app: xvid
             prefix: $GAMEDIR
         - task:
-            description: Installing "amstream"...
+            description: Installing amstream...
             name: winetricks
             app: amstream
             prefix: $GAMEDIR
@@ -115,5 +145,5 @@ results:
         - task:
             description: Configuring "Trails in the Sky"...
             name: wineexec
-            executable: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/Config.exe
+            executable: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/Config.exe
             prefix: $GAMEDIR
