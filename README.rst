@@ -9,20 +9,19 @@
 
 .. parsed-literal::
 
-   There's no such thing as a dumb question, Regnitz,
-       but that one came awfully close.
-
-                           — Instructor Neithardt
+   There's no such thing as a dumb question, Regnitz...
+            but that one came awfully close.
+                          — Instructor Neithardt
 
 This repository unofficially hosts `Lutris-based Linux installers <lutris_>`__
-for *all* entries in Falcom_'s acclaimed `"Kiseki" (i.e., "Trails", "Legend of
+for numerous entries in Falcom_'s acclaimed `Kiseki (i.e., "Trails", "Legend of
 Heroes", 『英雄伝説 …の軌跡』) universe <Kiseki_>`__: the longest-running
-continuously interconnected Japanese role-playing (JRPG) franchise now spanning
-three decades of active development.
+continuously interconnected Japanese role-playing (JRPG) franchise, now
+spanning three decades of active development.
 
 All installers hosted at this repository ship with out-of-the-box support for
-popular controllers, in-game cutscenes and videos, and full Japanese voice
-acting with fully localized English subtitles – including:
+input controllers, in-game videos, and full Japanese voice acting with fully
+localized English subtitles – including:
 
 * High-quality Japanese voice acting converted by `Zhenjian Yang`_'s
   `third-party SoraVoice library <SoraVoice_>`__ from the Japan-only
@@ -32,9 +31,9 @@ acting with fully localized English subtitles – including:
   Geofront <Geofront_>`__ for those entries still lacking official translations
   (i.e., *Zero no Kiseki*, *Ao no Kiseki*).
 
-This repository also serves as a `central hub for debating, detailing, and
-resolving issues in Linux emulation of all Kiseki entries <local issues_>`__.
-Help us get a better idea of the state of these installers by `submitting a new
+This repository also serves as a `central hub for detailing and resolving
+issues in Linux emulation of supported Kiseki entries <local issues_>`__. Help
+us get a better idea of the state of these installers by `submitting a new
 issue documenting your installation and playthrough experience <local issue
 new_>`__.
 
@@ -66,46 +65,68 @@ This repository currently hosts installers for only a subset of the available
 *Kiseki* titles. As we continue playing through the series ourselves,
 additional installers for later *Kiseki* titles will be added.
 
+We appreciate your patience as we walk these verbose trails... together.
+
 The Legend of Heroes: Trails in the Sky (Sora no Kiseki FC)
 -----------------------------------------------------------
 
-*The Legend of Heroes: Trails in the Sky* (Japan: *Eiyuu Densetsu: Sora no
-Kiseki First Chapter (FC)*) is the first entry in the *Kiseki* series,
-originally released in 2004 for the PlayStation Portable (PSP) and subsequently
-ported first to the PlayStation Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki
-FC Evolution* and then to Steam in 2016.
+`The Legend of Heroes: Trails in the Sky <Kiseki sora fc_>`__ (Japan: *Eiyuu
+Densetsu: Sora no Kiseki First Chapter (FC)*) is the first entry in the
+*Kiseki* series, originally released in 2004 for the PlayStation Portable (PSP)
+and subsequently ported first to the PlayStation Vita in 2015 as *Eiyuu
+Densetsu: Sora no Kiseki FC Evolution* and then to PC in 2016.
 
-The following instructions assume you have purchased and downloaded the `Good
-Old Games (GOG) version of this entry <sora fc GOG_>`__. We hope to add an
-equivalent Steam installer at a later date.
+These instructions assume you've purchased and downloaded the `Good Old Games
+(GOG) version of this entry <sora fc GOG_>`__. We hope to add an equivalent
+Steam installer (which is somewhat more difficult to support) at a later date.
 
-#. Download **Japanese voices** ripped from the Japan-only *Evolution* Vita
-   port:
+#. Download **Japanese dialog voices** converted from the *Evolution* Vita
+   port: [#sora fc dialog]_
 
-   #. Browse to this `MEGA-hosted filelocker folder <sora fc voices
+   #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc dialog voices
       folder_>`__.
-   #. Right-click the folder named ``The Legend of Heroes - Trails in the Sky
-      FC - Evolution Voices Mod``.
-   #. Expand the **Download...** item.
-   #. Click the **Download as ZIP** sub-item.
-   #. Right-click the folder named ``The Legend of Heroes - Trails in the Sky
-      FC - Japanese Battle Voices``.
-   #. Expand the **Download...** item.
-   #. Click the **Download as ZIP** sub-item.
+   #. Download the **1.92GB** file named
+      ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip``.
+   #. Download the **2.8MB** file named
+      ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Mod 20180518 Update.zip``.
 
-#. Download our `well-tested Lutris installer <local sora fc GOG_>`__.
+#. Download **Japanese battle voices** converted from the original PSP release:
+   [#sora fc battle]_
+
+   #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc battle voices
+      folder_>`__.
+   #. Download the **66.4MB** file named ``ED6_DT1A.dat``.
+   #. Download the **17KB** file named ``ED6_DT1A.dir``.
+
+#. Download our `well-tested Lutris GOG installer <local sora fc GOG_>`__.
 #. Open a terminal to the directory containing that file.
 #. Copy-and-paste this command into that terminal:
 
             lutris -i sora-no-kiseki-voices-gog.yml
 
-#. After installation, enable Japanese battle voices by:
+#. After installation, enable Japanese battle voices:
 
-   #. Running *The Legend of Heroes: Trails in the Sky.*
+   #. Run *The Legend of Heroes: Trails in the Sky.*
    #. Open the *Options* menu.
    #. Switch the *Voices* setting to Japanese.
 
 Brace for awesomeness. Your trail begins today.
+
+.. [#sora fc dialog]
+   Japanese dialog voice files are also available from various other sources
+   (e.g., nyaa), typically under a directory named ``The Legend of Heroes -
+   Trails in the Sky FC - Evolution Voices Mod/`` whose parent directory also
+   contains a copy of the GOG version of this game. Please download from these
+   sources *only* if you have already purchased this game. Falcom deserves all
+   of your wallet for their continued service to humanity.
+
+.. [#sora fc battle]
+   Japanese battle voice files are also available from various other sources
+   (e.g., nyaa), typically under a directory named ``The Legend of Heroes -
+   Trails in the Sky FC - Japanese Battle Voices/`` whose parent directory also
+   contains a copy of the GOG version of this game. Please download from these
+   sources *only* if you have already purchased this game. Falcom deserves all
+   of your wallet for their continued service to humanity.
 
 See Also
 ========
@@ -130,6 +151,8 @@ If you enjoy this, you might also enjoy:
 .. # ------------------( LINKS ~ falcom : kiseki            )------------------
 .. _Kiseki:
    https://en.wikipedia.org/wiki/Trails_(series)
+.. _Kiseki sora fc:
+   https://en.wikipedia.org/wiki/The_Legend_of_Heroes:_Trails_in_the_Sky
 
 .. # ------------------( LINKS ~ falcom : kiseki : soft     )------------------
 .. _Geofront:
@@ -146,9 +169,9 @@ If you enjoy this, you might also enjoy:
    https://www.xseedgames.com
 
 .. # ------------------( LINKS ~ filelocker : sora fc       )------------------
-.. _sora fc dialog voices folder:
+.. _MEGA sora fc dialog voices folder:
    https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
-.. _sora fc battle voices folder:
+.. _MEGA sora fc battle voices folder:
    https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
 
 .. # ------------------( LINKS ~ lutris                     )------------------
@@ -194,3 +217,7 @@ If you enjoy this, you might also enjoy:
    https://www.gog.com
 .. _sora fc GOG:
    https://www.gog.com/game/the_legend_of_heroes_trails_in_the_sky
+
+.. # ------------------( LINKS ~ store : steam              )------------------
+.. _Steam:
+   https://store.steampowered.com

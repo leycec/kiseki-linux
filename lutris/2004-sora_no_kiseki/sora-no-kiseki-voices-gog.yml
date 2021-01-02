@@ -1,7 +1,10 @@
 #FIXME: We may also want to:
-#* Disable "winegstreamer" with "winecfg" (or something).
-#* Install "dinput8", "directshow", "xvid", and/or "corefonts" with
-#  "winetricks".
+#* Install "directshow", and/or "corefonts" with "winetricks".
+#* Install "dinput8" with "winetricks". However, note that SoraVoice also
+#  ships an optional "dinput8.dll" file. *shrug*
+#FIXME: Note this concerning commentary with respect to controller support
+#conflicting with SoraVoice support:
+#    https://www.reddit.com/r/wine_gaming/comments/fh5b21/controller_not_working_in_trails_in_the_sky/
 
 results:
   - name: "The Legend of Heroes: Trails in the Sky"
@@ -14,21 +17,32 @@ results:
       files:
         # Manually browsed files, intentionally listed *BEFORE* downloads to
         # guarantee Lutris requests the user browse these files first.
-        - gog_installer: N/A:Select GOG Windows installer
-        - voices_files: N/A:Select 1.92GB Japanese dialog voices files archive (i.e., "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip")
-        - voices_files: N/A:Select 1.92GB Japanese dialog voices files archive (i.e., "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip")
+        - gog_exe: N/A:Select GOG Windows installer
+        - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" (1.92GB)
+        - soravoice_mod_zip: N/A:Select Japanese dialog voices mod archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Mod 20180518 Update.zip" (2.8MB)
+        - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT1A.dat" (66.4MB)
+        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" (66.4MB)
 
         # Automated downloads.
-        - innoextract: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
-        - lavf: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
-        - dsounddll: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/dsound_dll_20201001.7z
-        - soravoice: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
-        - soravoicescripts: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
+        - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
+        - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
+        - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
+        - soravoice_dsound_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/dsound_dll_20201001.7z
+        - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
 
       game:
         exe: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/ed6_win.exe
         arch: win64
         prefix: $GAMEDIR
+
+      wine:
+        overrides:
+          # Disable WINE's GStreamer support, which is known to induce extreme
+          # delay between audio and video during video playback:
+          #     https://bugs.winehq.org/show_bug.cgi?id=50239#c0
+          # Note that installing Quartz, Xvid, and "amstream" suffices to
+          # perfectly resolve this issue.
+          winegstreamer: disabled
 
       installer:
         - task:
@@ -39,26 +53,51 @@ results:
             install_mono: false
             prefix: $GAMEDIR
         - extract:
-            file: $innoextract
+            file: $innoextract_zip
             dst: $CACHE/innoextract
         - execute:
             file: $CACHE/innoextract/innoextract
-            args: -d "${CACHE}" "${gog_installer}"
-            args: --extract "${gog_installer}" --gog --output-dir "${CACHE}"
-        - copy:
-            src: $CACHE
-            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
-        # - task:
-        #   name: wineexec
-        #   executable: gog
-        #   prefix: $GAMEDIR
+            args: --extract "${gog_exe}" --gog --output-dir "${GAMEDIR}/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky"
         - extract:
-            file: $soravoice
+            file: $soravoice_files_zip
             dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        - extract:
+            file: $soravoice_mod_zip
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        - extract:
+            file: $soravoice_dsound_zip
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        - extract:
+            file: $soravoice_scripts_zip
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        # Do *NOT* extract the "SoraVoice" archive directly into the game
+        # directory. This archive contains a problematic top-level shared
+        # library (i.e., "dinput8.dll") that conflicts with the preferable
+        # shared library already installed from the $soravoice_dsound_zip file
+        # (i.e., "dsound.dll").
+        - extract:
+            file: $soravoice_zip
+            dst: $CACHE/soravoice
+        - copy:
+            src: $CACHE/soravoice/voice
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky/voice
+        - copy:
+            src: $battle_dat_file
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        - copy:
+            src: $battle_dir_file
+            dst: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails in the Sky
+        #FIXME: We may need to enable these three libraries as "n"-style native
+        #overrides under the "wine:" section above.
         - task:
             description: Installing Quartz...
             name: winetricks
             app: quartz
+            prefix: $GAMEDIR
+        - task:
+            description: Installing Xvid...
+            name: winetricks
+            app: xvid
             prefix: $GAMEDIR
         - task:
             description: Installing "amstream"...
@@ -68,8 +107,11 @@ results:
         - task:
             description: Installing LAVFilters...
             name: wineexec
-            executable: lavf
+            executable: $lavf_exe
             prefix: $GAMEDIR
+        # Run this game's configuration utility *BEFORE* permitting users to
+        # run this game. If this is not done, attempting to run this game
+        # typically fails with a fatal error. So it goes.
         - task:
             description: Configuring "Trails in the Sky"...
             name: wineexec

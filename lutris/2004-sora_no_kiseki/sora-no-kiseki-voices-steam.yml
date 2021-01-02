@@ -1,3 +1,5 @@
+#FIXME: This installer is probably badly broken. Caveat emptor!
+
 results:
   - name: "The Legend of Heroes: Trails in the Sky"
     version: "Steam with SoraVoice"
