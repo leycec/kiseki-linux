@@ -1,14 +1,5 @@
-#FIXME: We may also want to:
-#* Install "directshow", and/or "corefonts" with "winetricks".
-#* Install "dinput8" with "winetricks". However, note that SoraVoice also
-#  ships an optional "dinput8.dll" file. *shrug*
-#FIXME: Note this concerning commentary with respect to controller support
-#conflicting with SoraVoice support:
-#    https://www.reddit.com/r/wine_gaming/comments/fh5b21/controller_not_working_in_trails_in_the_sky/
-
 results:
   - name: "The Legend of Heroes: Trails in the Sky"
-
     # This version intentionally does *NOT* contain the magic substring "GOG",
     # as doing so magically enables non-ideal GOG integration in Lutris. Since
     # GOG users commonly prefer to manage GOG downloads themselves rather than
@@ -16,8 +7,9 @@ results:
     # GOG users instead preferring Lutris to manage GOG downloads are
     # encouraged to add the following line to the "game:" section below:
     #     gogid: 1207665083
-    version: "64-bit Windows + SoraVoice"
-
+    # Note also that GOG integration was broken for nearly a year throughout
+    # the Lutris 0.5.8.x lifecycle, which does *NOT* inspire confidence.
+    version: "32-bit Windows + SoraVoice"
     game_slug: sora-no-kiseki-fc-gog-voiced
     slug: sora-no-kiseki-fc-gog-voiced-installer
     runner: wine
@@ -26,11 +18,22 @@ results:
       files:
         # Manually browsed files, intentionally listed *BEFORE* downloads to
         # guarantee Lutris requests the user browse these files first.
-        - gog_exe: N/A:Select GOG Windows installer
-        - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" (1.92GB)
-        - soravoice_mod_zip: N/A:Select Japanese dialog voices mod archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Mod 20180518 Update.zip" (2.8MB)
-        - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT1A.dat" (66.4MB)
-        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" (17KB)
+        - gog_exe: N/A:Select GOG Windows installer executable (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287).exe") [~820KB]
+
+        #FIXME: Remove this *AFTER* Lutris implicitly supports multi-part GOG
+        #installers again. Unfortunately, Lutris 0.5.8.x fundamentally broke
+        #support for these installers by copying installer files into isolated
+        #cache directories and then attempting to extract and/or run those
+        #files from those directories. We currently circumvent this by
+        #requiring users to manually select *ALL* parts of multi-part GOG
+        #installers, which we then recombine back into a single cache directory
+        #with absurd symlinking. While awful, this works. Since this is awful,
+        #however, we would prefer to undo this as soon as Lutris fixes itself.
+        - gog_bin: N/A:Select GOG Windows installer .bin slice (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287)-1.bin") [~2.3GB]
+
+        - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" [1.92GB]
+        - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT1A.dat" [66.4MB]
+        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" [17KB]
 
         # Automated downloads.
         - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
@@ -41,7 +44,7 @@ results:
 
       game:
         exe: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/ed6_win.exe
-        arch: win64
+        arch: win32
         prefix: $GAMEDIR
 
       wine:
@@ -57,7 +60,13 @@ results:
         - task:
             description: Creating Wine prefix...
             name: create_prefix
-            arch: win64
+            # Install the 32- rather than 64-bit version of this game. Although
+            # recent versions of this game technically support both, the 32-bit
+            # version of this game is known to be substantially stabler;
+            # moreover, WINE emulation of various shared libraries required by
+            # this game (e.g., Quartz, Xvid, amstream) is also substantially
+            # stabler under 32- rather than 64-bit WINE prefixes.
+            arch: win32
             install_gecko: false
             install_mono: false
             prefix: $GAMEDIR
@@ -68,39 +77,37 @@ results:
         - execute:
             description: Creating "Trails in the Sky" directory...
             command: mkdir -p "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced"
-        #FIXME: Ahah! We've figured it out, basically. GOG ships a
-        #supplementary "bin" file as well, which we're not selecting above. We
-        #need to instruct Lutris to cache these two files together in the same
-        #directory or... something. *sigh*
+
+        #FIXME: Remove this *AFTER* Lutris implicitly supports multi-part GOG
+        #installers again. See above for voluminous commentary.
+        - execute:
+            description: Symlinking installer .bin slice into executable directory...
+            command: ln -s "${gog_bin}" "$(dirname "${gog_exe}")/"
+
         - execute:
             description: Installing "Trails in the Sky"...
             file: $CACHE/innoextract/innoextract
             args: -d "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced" "${gog_exe}"
-        - merge:
-            dst: $GAMEDIR
-            src: $CACHE
         - extract:
             description: Installing Japanese dialog voice files...
             file: $soravoice_files_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
-        - extract:
-            description: Installing Japanese dialog voice mod...
-            file: $soravoice_mod_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
-        - extract:
-            description: Installing SoraVoice-patched "dsound.dll"...
-            file: $soravoice_dsound_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
         - extract:
             description: Installing SoraVoice scripts...
             file: $soravoice_scripts_zip
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
+        - extract:
+            description: Installing SoraVoice-patched "dsound.dll"...
+            file: $soravoice_dsound_zip
             dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         # Do *NOT* extract the "SoraVoice" archive directly into the game
         # directory. This archive contains a problematic top-level shared
         # library (i.e., "dinput8.dll") that both disables controller support
         # and conflicts with the comparable shared library provided by the
         # $soravoice_dsound_zip file (i.e., "dsound.dll"), which does *NOT*
-        # disable controller support and is thus vastly preferable.
+        # disable controller support and is thus vastly preferable. Instead,
+        # extract this archive into a temporary directory and then copy *ONLY*
+        # desired subdirectories from that directory into the game directory.
         - extract:
             description: Extracting SoraVoice...
             file: $soravoice_zip
@@ -117,8 +124,6 @@ results:
             description: Installing Japanese battle voice directory file...
             src: $battle_dir_file
             dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
-        #FIXME: We may need to enable these three libraries as "n"-style native
-        #overrides under the "wine:" section above.
         - task:
             description: Installing Quartz...
             name: winetricks
@@ -140,8 +145,7 @@ results:
             executable: $lavf_exe
             prefix: $GAMEDIR
         # Run this game's configuration utility *BEFORE* permitting users to
-        # run this game. If this is not done, attempting to run this game
-        # typically fails with a fatal error. So it goes.
+        # run this game. If *NOT* done, this game fails with fatal errors.
         - task:
             description: Configuring "Trails in the Sky"...
             name: wineexec

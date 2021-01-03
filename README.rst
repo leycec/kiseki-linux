@@ -87,10 +87,8 @@ Steam installer at a later date.
 
    #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc dialog voices
       folder_>`__.
-   #. Download the **1.92GB** file named
+   #. Download *only* the **1.92GB** file named
       ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip``.
-   #. Download the **2.8MB** file named
-      ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Mod 20180518 Update.zip``.
 
 #. Download **Japanese battle voices** converted from the original PSP release:
    [#sora-fc-battle]_
@@ -217,7 +215,7 @@ If you enjoy this, you might also enjoy:
 
 .. # ------------------( LINKS ~ local : script             )------------------
 .. _local sora fc GOG:
-   https://github.com/leycec/kiseki-linux/raw/main/lutris/sora-no-kiseki-voices-gog.yml
+   https://github.com/leycec/kiseki-linux/raw/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-gog-voiced.yml
 
 .. # ------------------( LINKS ~ store : gog                )------------------
 .. _GOG:
