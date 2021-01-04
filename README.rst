@@ -15,13 +15,13 @@ The Legend of Heroes: Trails… for Linux!
 
 This repository unofficially hosts `Lutris-based Linux installers <lutris_>`__
 for numerous entries in Falcom_'s legendary `Kiseki (i.e., "The Legend of
-Heroes: Trails…",『英雄伝説 …の軌跡』) universe <Kiseki_>`__: the
+Heroes: Trails…",『英雄伝説 …の軌跡』) universe <Kiseki_>`__ – the
 longest-running continuously interconnected Japanese role-playing (JRPG)
 franchise, now spanning three decades of profitable development.
 
 All installers hosted at this repository ship with out-of-the-box support for
 input controllers, in-game videos, and full Japanese voice acting with fully
-localized English subtitles – including:
+localized English subtitles. This includes:
 
 * High-quality Japanese voice acting converted by `Zhenjian Yang`_'s
   `third-party SoraVoice library <SoraVoice_>`__ from the Japan-only
@@ -191,7 +191,7 @@ If you enjoy this, you might also enjoy:
    https://forums.fuwanovel.net/topic/1820-chuuni-what-is-this-genre
 .. _leycec Aokana:
    https://github.com/leycec/aokana-linux
-.. _leycec Fate/stay jight:
+.. _leycec Fate/stay night:
    https://github.com/leycec/fsnrnue
 .. _Aokana:
    https://nekonyansoft.com/shop/product/22
