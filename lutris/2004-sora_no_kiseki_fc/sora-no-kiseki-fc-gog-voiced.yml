@@ -4,12 +4,12 @@ results:
     # as doing so magically enables non-ideal GOG integration in Lutris. Since
     # GOG users commonly prefer to manage GOG downloads themselves rather than
     # implicitly through Lutris, the current approach is typically preferable.
-    # GOG users instead preferring Lutris to manage GOG downloads are
-    # encouraged to add the following line to the "game:" section below:
+    # GOG users that prefer Lutris to manage GOG downloads are encouraged to
+    # add "GOG" to this version *AND* this line to the "game:" section below:
     #     gogid: 1207665083
     # Note also that GOG integration was broken for nearly a year throughout
     # the Lutris 0.5.8.x lifecycle, which does *NOT* inspire confidence.
-    version: "32-bit Windows + SoraVoice"
+    version: "32-bit Windows DirectX 8 voiced version"
     game_slug: sora-no-kiseki-fc-gog-voiced
     slug: sora-no-kiseki-fc-gog-voiced-installer
     runner: wine
@@ -39,22 +39,40 @@ results:
         - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
         - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
         - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
-        - soravoice_dsound_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/dsound_dll_20201001.7z
         - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
 
       game:
+        # This game provides two alternate main executables:
+        # * "ed6_win.exe", implemented with DirectX 8. This version is known to
+        #   work well with no significant issues.
+        # * "ed6_win_DX9.exe", implemented with DirectX 9. This version is
+        #   known to exhibit severe issues, including:
+        #   * Silent failure at startup when DXVK is enabled, which it is by
+        #     default. Although this is of course trivially circumvented via
+        #     "dxvk: false" above, users manually overriding this default will
+        #     nonetheless by welcomed by a non-working game.
+        #   * Assets failing to render at *ANY* resolutions, resulting in
+        #     dialog text displayed over an otherwise black background.
+        #   * Menu scaling issues at higher resolutions unless the "High-Res
+        #     Assets" option is explicitly disabled via the "Config.exe" file.
         exe: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/ed6_win.exe
         arch: win32
         prefix: $GAMEDIR
 
       wine:
         overrides:
-          # Disable WINE's GStreamer support, which is known to induce extreme
-          # delay between audio and video during video playback:
-          #     https://bugs.winehq.org/show_bug.cgi?id=50239#c0
-          # Note that installing Quartz, Xvid, and "amstream" suffices to
-          # perfectly resolve this issue.
-          winegstreamer: disabled
+          # SoraVoice supports two alternate patched audio shared libraries:
+          # * "dinput8.dll", provided by the $soravoice_zip archive downloaded
+          #   above. This library is known to work well with no significant
+          #   issues.
+          # * "dsound.dll", provided by an optional archive available at:
+          #       https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/dsound_dll_20201001.7z
+          #   This library is known to cause this game to fail at startup with
+          #   the following non-human-readable error:
+          #       .exeCreateFile failed. Error: 32
+          # Force this game to use the former library rather than WINE's
+          # builtin Linux-specific emulation of this library.
+          dinput8: native
 
       installer:
         - task:
@@ -89,55 +107,34 @@ results:
             file: $CACHE/innoextract/innoextract
             args: -d "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced" "${gog_exe}"
         - extract:
-            description: Installing Japanese dialog voice files...
+            description: Installing SoraVoice...
+            file: $soravoice_zip
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
+        - extract:
+            description: Installing SoraVoice audio files...
             file: $soravoice_files_zip
             dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
         - extract:
             description: Installing SoraVoice scripts...
             file: $soravoice_scripts_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
-        - extract:
-            description: Installing SoraVoice-patched "dsound.dll"...
-            file: $soravoice_dsound_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
-        # Do *NOT* extract the "SoraVoice" archive directly into the game
-        # directory. This archive contains a problematic top-level shared
-        # library (i.e., "dinput8.dll") that both disables controller support
-        # and conflicts with the comparable shared library provided by the
-        # $soravoice_dsound_zip file (i.e., "dsound.dll"), which does *NOT*
-        # disable controller support and is thus vastly preferable. Instead,
-        # extract this archive into a temporary directory and then copy *ONLY*
-        # desired subdirectories from that directory into the game directory.
-        - extract:
-            description: Extracting SoraVoice...
-            file: $soravoice_zip
-            dst: $CACHE/soravoice
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice/scena
         - copy:
-            description: Installing SoraVoice...
-            src: $CACHE/soravoice/voice
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
-        - copy:
-            description: Installing Japanese battle voice data file...
+            description: Installing Japanese battle voices data file...
             src: $battle_dat_file
             dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
         - copy:
-            description: Installing Japanese battle voice directory file...
+            description: Installing Japanese battle voices directory file...
             src: $battle_dir_file
             dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
+        # Failing to install native video shared libraries causes this game to
+        # fail at startup with the following non-human-readable error:
+        #       .exeCreateFile failed. Error: 32
+        # Yes, this is the exact same error this game fails with when
+        # attempting to use SoraVoice-patched "dsound.dll" shared library.
         - task:
-            description: Installing Quartz...
+            description: Installing native video shared libraries...
             name: winetricks
-            app: quartz
-            prefix: $GAMEDIR
-        - task:
-            description: Installing Xvid...
-            name: winetricks
-            app: xvid
-            prefix: $GAMEDIR
-        - task:
-            description: Installing amstream...
-            name: winetricks
-            app: amstream
+            app: quartz amstream  # directshow xvid
             prefix: $GAMEDIR
         - task:
             description: Installing LAVFilters...
@@ -145,7 +142,10 @@ results:
             executable: $lavf_exe
             prefix: $GAMEDIR
         # Run this game's configuration utility *BEFORE* permitting users to
-        # run this game. If *NOT* done, this game fails with fatal errors.
+        # run this game. If *NOT* done, this game fails with fatal errors at
+        # startup. Since Lutris currently offers users no means of running
+        # utilities, we would need to run this utility here anyway even if this
+        # utility was *NOT* a hard prerequisite... which it is, of course.
         - task:
             description: Configuring "Trails in the Sky"...
             name: wineexec

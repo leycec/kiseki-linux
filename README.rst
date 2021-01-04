@@ -3,21 +3,21 @@
 .. image:: https://user-images.githubusercontent.com/217028/103398869-63d2ab00-4b36-11eb-948a-e32a947952c6.png
    :align: center
 
-=======================================================
-( Kiseki | Trails | Legend of Heroes | 軌跡 ) for Linux
-=======================================================
+===========================================
+The Legend of Heroes: Trails of… for Linux!
+===========================================
 
 .. parsed-literal::
 
-   There's no such thing as a dumb question, Regnitz...
+   There's no such thing as a dumb question, Regnitz…
             but that one came awfully close.
                           — Instructor Neithardt
 
 This repository unofficially hosts `Lutris-based Linux installers <lutris_>`__
-for numerous entries in Falcom_'s acclaimed `Kiseki (i.e., "Trails", "Legend of
+for numerous entries in Falcom_'s legendary `Kiseki (i.e., "Trails", "Legend of
 Heroes", 『英雄伝説 …の軌跡』) universe <Kiseki_>`__: the longest-running
 continuously interconnected Japanese role-playing (JRPG) franchise, now
-spanning three decades of active development.
+spanning three decades of profitable development.
 
 All installers hosted at this repository ship with out-of-the-box support for
 input controllers, in-game videos, and full Japanese voice acting with fully
