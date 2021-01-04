@@ -3,9 +3,9 @@
 .. image:: https://user-images.githubusercontent.com/217028/103398869-63d2ab00-4b36-11eb-948a-e32a947952c6.png
    :align: center
 
-===========================================
-The Legend of Heroes: Trails of… for Linux!
-===========================================
+========================================
+The Legend of Heroes: Trails… for Linux!
+========================================
 
 .. parsed-literal::
 
@@ -14,10 +14,10 @@ The Legend of Heroes: Trails of… for Linux!
                           — Instructor Neithardt
 
 This repository unofficially hosts `Lutris-based Linux installers <lutris_>`__
-for numerous entries in Falcom_'s legendary `Kiseki (i.e., "Trails", "Legend of
-Heroes", 『英雄伝説 …の軌跡』) universe <Kiseki_>`__: the longest-running
-continuously interconnected Japanese role-playing (JRPG) franchise, now
-spanning three decades of profitable development.
+for numerous entries in Falcom_'s legendary `Kiseki (i.e., "The Legend of
+Heroes: Trails…",『英雄伝説 …の軌跡』) universe <Kiseki_>`__: the
+longest-running continuously interconnected Japanese role-playing (JRPG)
+franchise, now spanning three decades of profitable development.
 
 All installers hosted at this repository ship with out-of-the-box support for
 input controllers, in-game videos, and full Japanese voice acting with fully
@@ -61,32 +61,31 @@ new_>`__.
 Installation
 ============
 
-This repository currently hosts installers for only a subset of the available
+This repository currently hosts installers for only some of the available
 *Kiseki* titles. As we continue playing through the series ourselves,
 additional installers for later *Kiseki* titles will be added.
 
-We apologize for this inconvenience and hope you enjoy your stay in the Liberl
-Kingdom.
+We apologize for the inconvenience and hope you enjoy your stay in Liberl.
 
 The Legend of Heroes: Trails in the Sky (Sora no Kiseki FC)
 -----------------------------------------------------------
 
 `The Legend of Heroes: Trails in the Sky <Kiseki sora fc_>`__ (Japan: *Eiyuu
-Densetsu: Sora no Kiseki First Chapter (FC)*) is the first entry in the
-*Kiseki* series, originally released in 2004 for the PlayStation Portable (PSP)
-and subsequently ported first to the PlayStation Vita in 2015 as *Eiyuu
-Densetsu: Sora no Kiseki FC Evolution* and then to PC in 2016 via both GOG_ and
-Steam_.
+Densetsu: Sora no Kiseki First Chapter (FC)*,『英雄伝説 空の軌跡』) is the
+first title in the *Kiseki* arc, originally released in 2004 for the
+PlayStation Portable (PSP) and subsequently ported first to the PlayStation
+Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
+2016 via both GOG_ and Steam_.
 
 These instructions assume you've purchased and downloaded the `Good Old Games
 (GOG) version of this game <sora fc GOG_>`__. We hope to add an equivalent
 Steam installer at a later date.
 
-#. Download **Japanese dialog voices** converted from the *Evolution* Vita
-   port: [#sora-fc-dialog]_
+#. Download **Japanese dialogue voices** converted from the *Evolution* Vita
+   port: [#sora-fc-dialogue]_
 
-   #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc dialog voices
-      folder_>`__.
+   #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc dialogue
+      voices folder_>`__.
    #. Download *only* the **1.92GB** file named
       ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip``.
 
@@ -112,13 +111,13 @@ Steam installer at a later date.
 
 Brace for awesomeness. Your trail begins today.
 
-.. [#sora-fc-dialog]
-   Japanese dialog voice files are also available from other sites (e.g.,
+.. [#sora-fc-dialogue]
+   Japanese dialogue voice files are also available from other sites (e.g.,
    nyaa), typically under a directory named ``The Legend of Heroes - Trails in
    the Sky FC - Evolution Voices Mod/`` whose parent directory also contains a
    copy of the GOG version of this game. Please download from these sites
    *only* if you have already purchased this game. Falcom deserves all of your
-   wallet for their continued service to humanity.
+   wallet for their service to humanity.
 
 .. [#sora-fc-battle]
    Japanese battle voice files are also available from other sites (e.g.,
@@ -126,22 +125,22 @@ Brace for awesomeness. Your trail begins today.
    the Sky FC - Japanese Battle Voices/`` whose parent directory also contains
    a copy of the GOG version of this game. Please download from these sites
    *only* if you have already purchased this game. Falcom deserves all of your
-   wallet for their continued service to humanity.
+   wallet for their service to humanity.
 
 The Legend of Heroes: Trails in the Sky SC (Sora no Kiseki SC)
 --------------------------------------------------------------
 
-*To be announced...* sometime possibly soon!
+*To be announced...*
 
 See Also
 ========
 
 If you enjoy this, you might also enjoy:
 
-* `Ao no Kanata no Four Rhythm (Aokana)… for Linux! <leycec Aokana_>`__, a suite
-  of `Lutris installers <Lutris_>`__ automating patching, installation, and
-  execution for the fan-produced native Linux port of the `shounen sports
-  chuunibyou <chuuni_>`__ visual novel Aokana_.
+* `Ao no Kanata no Four Rhythm (Aokana)… for Linux! <leycec Aokana_>`__,
+  `Lutris installers <Lutris_>`__ automating patching and execution for the
+  fan-produced native Linux port of the `shounen sports chuunibyou <chuuni_>`__
+  visual novel Aokana_.
 * `Fate/stay night [Réalta Nua] Ultimate Edition… for Linux! <leycec Fate/stay
   night_>`__, a `Lutris installers <Lutris_>`__ automating patching and
   execution of the *[Réalta Nua]* variant of the seminal `shounen chuunibyou
@@ -174,7 +173,7 @@ If you enjoy this, you might also enjoy:
    https://www.xseedgames.com
 
 .. # ------------------( LINKS ~ filelocker : sora fc       )------------------
-.. _MEGA sora fc dialog voices folder:
+.. _MEGA sora fc dialogue voices folder:
    https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
 .. _MEGA sora fc battle voices folder:
    https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT

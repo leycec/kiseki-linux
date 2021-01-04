@@ -44,7 +44,7 @@ results:
       game:
         # This game provides two alternate main executables:
         # * "ed6_win.exe", implemented with DirectX 8. This version is known to
-        #   work well with no significant issues.
+        #   work well with no issues.
         # * "ed6_win_DX9.exe", implemented with DirectX 9. This version is
         #   known to exhibit severe issues, including:
         #   * Silent failure at startup when DXVK is enabled, which it is by
@@ -63,8 +63,7 @@ results:
         overrides:
           # SoraVoice supports two alternate patched audio shared libraries:
           # * "dinput8.dll", provided by the $soravoice_zip archive downloaded
-          #   above. This library is known to work well with no significant
-          #   issues.
+          #   above. This library is known to work well with no issues.
           # * "dsound.dll", provided by an optional archive available at:
           #       https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/dsound_dll_20201001.7z
           #   This library is known to cause this game to fail at startup with
