@@ -17,7 +17,7 @@ This repository unofficially hosts `Lutris-based Linux installers <lutris_>`__
 for numerous entries in Falcom_'s legendary `Kiseki (i.e., "The Legend of
 Heroes: Trails…",『英雄伝説 …の軌跡』) universe <Kiseki_>`__ – the
 longest-running continuously interconnected Japanese role-playing (JRPG)
-franchise, now spanning three decades of profitable development.
+franchise now spanning three decades of profitable development.
 
 All installers hosted at this repository ship with out-of-the-box support for
 input controllers, in-game videos, and full Japanese voice acting with fully
@@ -78,13 +78,14 @@ Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
 2016 via both GOG_ and Steam_.
 
 These instructions assume you've purchased and downloaded the `Good Old Games
-(GOG) version of this game <sora fc GOG_>`__. We hope to add an equivalent
-Steam installer at a later date.
+(GOG) version <sora fc GOG_>`__. We hope to add an equivalent Steam installer
+at a later date.
 
+#. `Download and install Lutris <Lutris_>`__.
 #. Download **Japanese dialogue voices** converted from the *Evolution* Vita
    port: [#sora-fc-dialogue]_
 
-   #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc dialogue
+   #. `Browse to this MEGA-hosted filelocker folder <MEGA sora fc dialogue
       voices folder_>`__.
    #. Download *only* the **1.92GB** file named
       ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip``.
@@ -92,7 +93,7 @@ Steam installer at a later date.
 #. Download **Japanese battle voices** converted from the original PSP release:
    [#sora-fc-battle]_
 
-   #. Browse to this `MEGA-hosted filelocker folder <MEGA sora fc battle voices
+   #. `Browse to this MEGA-hosted filelocker folder <MEGA sora fc battle voices
       folder_>`__.
    #. Download the **66.4MB** file named ``ED6_DT1A.dat``.
    #. Download the **17KB** file named ``ED6_DT1A.dir``.
@@ -176,7 +177,7 @@ If you enjoy this, you might also enjoy:
 .. _MEGA sora fc dialogue voices folder:
    https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
 .. _MEGA sora fc battle voices folder:
-   https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
+   https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/40FgxYaA
 
 .. # ------------------( LINKS ~ lutris                     )------------------
 .. _Lutris:
