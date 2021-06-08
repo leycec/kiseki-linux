@@ -1,4 +1,6 @@
-#FIXME: This installer is probably badly broken. Caveat emptor!
+#FIXME: This installer currently does nothing and is thus fundamentally broken.
+#Why? Because we don't have TitS Sky FC for Steam and thus have no means of
+#testing this. *shrug*
 
 results:
   - name: "The Legend of Heroes: Trails in the Sky"

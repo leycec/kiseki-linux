@@ -16,6 +16,23 @@ results:
 
     script:
       files:
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # CAUTION: Lutris 0.5.8.3 (and probably other versions as well) has a
+        # critical issue with ordering of assets here. Specifically, if
+        # automated downloads are listed *AFTER* manually browsed files, then
+        # Lutris silently refuses to continue with the installation process
+        # after the user finishes manually browsing those files and presses the
+        # "Confirm" button. Since this is insane, we circumvent this by listing
+        # automated downloads *BEFORE* manually browsed files. See also:
+        #     https://github.com/leycec/kiseki-linux/issues/3
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        # Automated downloads.
+        - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
+        - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
+        - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
+        - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
+
         # Manually browsed files, intentionally listed *BEFORE* downloads to
         # guarantee Lutris requests the user browse these files first.
         - gog_exe: N/A:Select GOG Windows installer executable (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287).exe") [~820KB]
@@ -34,12 +51,6 @@ results:
         - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" [1.92GB]
         - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT1A.dat" [66.4MB]
         - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" [17KB]
-
-        # Automated downloads.
-        - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
-        - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
-        - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
-        - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
 
       game:
         # This game provides two alternate main executables:
