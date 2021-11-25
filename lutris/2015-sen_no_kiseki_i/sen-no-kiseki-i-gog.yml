@@ -1,0 +1,43 @@
+results:
+  - name: "The Legend of Heroes: Trails of Cold Steel"
+    version: "64-bit Windows Version"
+    game_slug: "the-legend-of-heroes-trails-of-cold-steel"
+    slug: the-legend-of-heroes-trails-o-gog
+    runner: wine
+
+    script:
+      files:
+        # This install method does not require any manual downloads. 
+      - gog: N/A:Select the Windows GOG installer
+      game:
+        arch: win64
+        exe: $GAMEDIR/drive_c/GOG Games/The Legend of Heroes - Trails of Cold Steel/Sen1Launcher.exe
+        prefix: $GAMEDIR
+      installer:
+      - task:
+          # Unlike the previous Kiseki titles, Sen I and the games following
+          # do work under a 64-bit wine prefix.
+          arch: win64
+          description: Creating Wine prefix...
+          name: create_prefix
+          prefix: $GAMEDIR
+      - task:
+          # Even though the prefix is 64-bit, installing these winetrics 
+          # make the game runnable.
+          app: quartz amstream ffdshow lavfilters gdiplus
+          description: Installing components...
+          name: winetricks
+          prefix: $GAMEDIR
+      - task:
+          description: Installing Trails of Cold Steel...
+          executable: gog
+          name: wineexec
+          prefix: $GAMEDIR
+      wine:
+        overrides:
+          # This is to get the config menu, sound, and animated cutscenes 
+          # (in particular, the opening cutscene) to work properly.
+          amstream: n
+          dsound: b
+          gdiplus: n
+          quartz: n
