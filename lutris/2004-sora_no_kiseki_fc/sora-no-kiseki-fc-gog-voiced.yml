@@ -8,7 +8,7 @@ results:
     # add "GOG" to this version *AND* this line to the "game:" section below:
     #     gogid: 1207665083
     # Note also that GOG integration was broken for nearly a year throughout
-    # the Lutris 0.5.8.x lifecycle, which does *NOT* inspire confidence.
+    # the Lutris 0.5.8.x lifecycle, which does *NOT* inspire confidence here.
     version: "32-bit Windows DirectX 8 voiced version"
     game_slug: sora-no-kiseki-fc-gog-voiced
     slug: sora-no-kiseki-fc-gog-voiced-installer
@@ -33,8 +33,7 @@ results:
         - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
         - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
 
-        # Manually browsed files, intentionally listed *BEFORE* downloads to
-        # guarantee Lutris requests the user browse these files first.
+        # Manually browsed files.
         - gog_exe: N/A:Select GOG Windows installer executable (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287).exe") [~820KB]
 
         #FIXME: Remove this *AFTER* Lutris implicitly supports multi-part GOG
@@ -46,6 +45,10 @@ results:
         #installers, which we then recombine back into a single cache directory
         #with absurd symlinking. While awful, this works. Since this is awful,
         #however, we would prefer to undo this as soon as Lutris fixes itself.
+        #FIXME: Unfortunately, there doesn't appear to be a Lutris issue
+        #describing this feature request. Indeed, googling "lutris multi-part"
+        #fails to yield relevant content. In other words, let's not hold our
+        #breath on this ever happening. *sigh*
         - gog_bin: N/A:Select GOG Windows installer .bin slice (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287)-1.bin") [~2.3GB]
 
         - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" [1.92GB]
@@ -71,6 +74,12 @@ results:
         prefix: $GAMEDIR
 
       wine:
+        # This game behaves substantially better when confined to a WINE
+        # Virtual Desktop (ideally of the same resolution as the host system).
+        # When allowed to create a native window, this game silently fails on
+        # the first switch to a different window, where "silently fails" means
+        # "refuses to either redraw itself or respond to HID events."
+        desktop: true
         overrides:
           # SoraVoice supports two alternate patched audio shared libraries:
           # * "dinput8.dll", provided by the $soravoice_zip archive downloaded
@@ -110,7 +119,17 @@ results:
         #installers again. See above for voluminous commentary.
         - execute:
             description: Symlinking installer .bin slice into executable directory...
-            command: ln -s "${gog_bin}" "$(dirname "${gog_exe}")/"
+            command: |
+              # Absolute dirname of the directory containing the GOG .exe file.
+              GOG_EXE_DIRNAME="$(dirname "${gog_exe}")"
+
+              # Relative basename of the GOG .bin file.
+              GOG_BIN_BASENAME="$(basename "${gog_bin}")"
+
+              # If this directory does *NOT* already contain this file,
+              # symbolically link this file into this directory.
+              [[ -f "${GOG_EXE_DIRNAME}/${GOG_BIN_BASENAME}" ]] ||
+                  ln -s "${gog_bin}" "${GOG_EXE_DIRNAME}/"
 
         - execute:
             description: Installing "Trails in the Sky"...
