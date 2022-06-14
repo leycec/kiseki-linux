@@ -100,6 +100,7 @@ Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
 
 #. Download our `well-tested Lutris GOG installer <local sora fc GOG_>`__.
 #. Open a terminal to the directory containing that file.
+#. **Close** Lutris (if Lutris is already open).
 #. Copy-and-paste this command into that terminal:
 
             lutris -i sora-no-kiseki-fc-gog-voiced.yml

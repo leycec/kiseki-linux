@@ -29,8 +29,8 @@ results:
 
         # Automated downloads.
         - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
-        - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
-        - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20201001/SoraVoiceLite_20201001.7z
+        - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.76.1/LAVFilters-0.76.1-Installer.exe
+        - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20220120/SoraVoiceLite_20220120.7z
         - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
 
         # Manually browsed files.
