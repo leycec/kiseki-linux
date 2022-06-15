@@ -273,7 +273,48 @@ least **speak to all of the NPCs in Kartarius' guide whose names are prefixed by
 either a "+" or "++"** (e.g., "+Claire (outside Abend Bar)", "++Aina"). Speaking
 with these NPCs yields a conversation between those NPCs and the party; in the
 case of NPCs whose names are prefixed by a "++", those conversations are
-additionally voiced. No game has ever worked so hard to hide so much content.
+additionally voiced.
+
+No game has ever worked so hard to hide so much content.
+
+Which difficulty should I play on?
+++++++++++++++++++++++++++++++++++
+
+**Hard.** For clarity, let's accurately retranslate this game's four difficulty
+settings into modern parlance:
+
++-------------------+-------------------------------------------------------+
+| Stated Difficulty | Actual Difficulty                                     |
++===================+=======================================================+
+| Easy              | **Babby's First JRPG**                                |
+| Normal            | **Babby's First JRPG** (\ *Part Deux*\ )              |
+| Hard              | **Normal**                                            |
+| Nightmare         | **I GUZZLE THE BITTER TEARS OF YOUR SWEET SUFFERING** |
++-------------------+-------------------------------------------------------+
+
+We all see the problem there, I trust. Out of four available difficulty
+settings, only one difficulty setting is worth sinking 80 or more hours into.
+
+On the high end (i.e., on "Nightmare"), you *will* stumble headfirst into
+difficulty spikes that can only be overcome via luck-based save scumming and
+non-fun farming for Quartz, food, EXP, and rare gear drops. You will repeatedly
+pray to RNJesus for succour from your poor life choices.
+
+On the low end (i.e., on "Easy" and "Normal"), you *will* blindly trainwreck
+through all available combat by repeatedly pressing **X** to win. Not even the
+**Turbo** button – which you will, of course, keep held down for 80 continuous
+hours until your fragile wrist snaps under its oppressive load – can save your
+playthrough from the blue pill of monotony. Do you like boredom? You will learn
+to do so.
+
+On the middle end (i.e., on "Hard"), you *will* meaningfully engage with
+(mostly) fun subsystems like Quartz slots, character gear, and cooking
+ingredients. Trash mobs and bosses alike require a modest amount of preparation.
+Difficulty spikes are extremely uncommon, (mostly) tied to optional super
+bosses, and always surmountable *without* requiring luck-based save scumming or
+non-fun farming for Quartz, food, EXP, or rare gear drops.
+
+Play on **Hard.** Fun is its own reward. Have fun. Be rewarded. You deserve it.
 
 How do you reconfigure the game after installation?
 +++++++++++++++++++++++++++++++++++++++++++++++++++
