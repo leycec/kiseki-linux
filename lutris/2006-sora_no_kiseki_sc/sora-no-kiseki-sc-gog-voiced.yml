@@ -1,17 +1,17 @@
 results:
-  - name: "The Legend of Heroes: Trails in the Sky"
+  - name: "The Legend of Heroes: Trails in the Sky SC"
     # This version intentionally does *NOT* contain the magic substring "GOG",
     # as doing so magically enables non-ideal GOG integration in Lutris. Since
     # GOG users commonly prefer to manage GOG downloads themselves rather than
     # implicitly through Lutris, the current approach is typically preferable.
     # GOG users that prefer Lutris to manage GOG downloads are encouraged to
     # add "GOG" to this version *AND* this line to the "game:" section below:
-    #     gogid: 1207665083
+    #     gogid: 1444826419
     # Note also that GOG integration was broken for nearly a year throughout
     # the Lutris 0.5.8.x lifecycle, which does *NOT* inspire confidence here.
     version: "32-bit Windows DirectX 8 voiced version"
-    game_slug: sora-no-kiseki-fc-gog-voiced
-    slug: sora-no-kiseki-fc-gog-voiced-installer
+    game_slug: sora-no-kiseki-sc-gog-voiced
+    slug: sora-no-kiseki-sc-gog-voiced-installer
     runner: wine
 
     script:
@@ -31,10 +31,10 @@ results:
         - innoextract_zip: https://constexpr.org/innoextract/files/innoextract-1.9-linux.tar.xz
         - lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.77.1/LAVFilters-0.77.1-Installer.exe
         - soravoice_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20220120/SoraVoiceLite_20220120.7z
-        - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
+        - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.sc_20180512.7z
 
         # Manually browsed files.
-        - gog_exe: N/A:Select GOG Windows installer executable (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287).exe") [~820KB]
+        - gog_exe: N/A:Select GOG Windows installer executable (e.g., "setup_the_legend_of_heroes_-_trails_in_the_sky_second_chapter_2017.08.27_(14628).exe") [~722KB]
 
         #FIXME: Remove this *AFTER* Lutris implicitly supports multi-part GOG
         #installers again. Unfortunately, Lutris 0.5.8.x fundamentally broke
@@ -49,11 +49,11 @@ results:
         #describing this feature request. Indeed, googling "lutris multi-part"
         #fails to yield relevant content. In other words, let's not hold our
         #breath on this ever happening. *sigh*
-        - gog_bin: N/A:Select GOG Windows installer .bin slice (e.g., "setup_the_legend_of_heroes_trails_in_the_sky_2019.03.24_(28287)-1.bin") [~2.3GB]
+        - gog_bin: N/A:Select GOG Windows installer .bin slice (e.g., "setup_the_legend_of_heroes_-_trails_in_the_sky_second_chapter_2017.08.27_(14628)-1.bin") [~3.8GB]
 
-        - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip" [1.92GB]
-        - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT1A.dat" [66.4MB]
-        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT1A.dir" [17KB]
+        - soravoice_files_zip: N/A:Select Japanese dialog voices files archive "The Legend of Heroes - Trails in the Sky SC - Evolution Voices Files 20180518 Update.zip" [2.8GB]
+        - battle_dat_file: N/A:Select Japanese battle voices data file "ED6_DT37.dat" [96MB]
+        - battle_dir_file: N/A:Select Japanese battle voices directory file "ED6_DT37.dir" [24KB]
 
       game:
         # This game provides two alternate main executables:
@@ -69,7 +69,7 @@ results:
         #     dialog text displayed over an otherwise black background.
         #   * Menu scaling issues at higher resolutions unless the "High-Res
         #     Assets" option is explicitly disabled via the "Config.exe" file.
-        exe: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/ed6_win.exe
+        exe: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/ed6_win.exe
         arch: win32
         prefix: $GAMEDIR
 
@@ -112,8 +112,8 @@ results:
             file: $innoextract_zip
             dst: $CACHE/innoextract
         - execute:
-            description: Creating "Trails in the Sky" directory...
-            command: mkdir -p "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced"
+            description: Creating "Trails in the Sky SC" directory...
+            command: mkdir -p "${GAMEDIR}/drive_c/sora_no_kiseki_sc_gog_voiced"
 
         #FIXME: Remove this *AFTER* Lutris implicitly supports multi-part GOG
         #installers again. See above for voluminous commentary.
@@ -132,29 +132,29 @@ results:
                   ln -s "${gog_bin}" "${GOG_EXE_DIRNAME}/"
 
         - execute:
-            description: Installing "Trails in the Sky"...
+            description: Installing "Trails in the Sky SC"...
             file: $CACHE/innoextract/innoextract
-            args: -d "${GAMEDIR}/drive_c/sora_no_kiseki_fc_gog_voiced" "${gog_exe}"
+            args: -d "${GAMEDIR}/drive_c/sora_no_kiseki_sc_gog_voiced" "${gog_exe}"
         - extract:
             description: Installing SoraVoice...
             file: $soravoice_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced
         - extract:
             description: Installing SoraVoice audio files...
             file: $soravoice_files_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/voice
         - extract:
             description: Installing SoraVoice scripts...
             file: $soravoice_scripts_zip
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/voice/scena
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/voice/scena
         - copy:
             description: Installing Japanese battle voices data file...
             src: $battle_dat_file
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced
         - copy:
             description: Installing Japanese battle voices directory file...
             src: $battle_dir_file
-            dst: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced
+            dst: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced
         # Failing to install native video shared libraries causes this game to
         # fail at startup with the following non-human-readable error:
         #       .exeCreateFile failed. Error: 32
@@ -178,5 +178,5 @@ results:
         - task:
             description: Configuring "Trails in the Sky"...
             name: wineexec
-            executable: $GAMEDIR/drive_c/sora_no_kiseki_fc_gog_voiced/Config.exe
+            executable: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/Config.exe
             prefix: $GAMEDIR
