@@ -131,10 +131,25 @@ results:
               [[ -f "${GOG_EXE_DIRNAME}/${GOG_BIN_BASENAME}" ]] ||
                   ln -s "${gog_bin}" "${GOG_EXE_DIRNAME}/"
 
+        # Intentionally extract this installer to the root "C:/" drive rather
+        # than a subdirectory of that drive (e.g.,
+        # "C:/sora_no_kiseki_sc_gog_voiced/". Why? Because this installer only
+        # contains a single subdirectory named "app/". If we extracted this
+        # installer to "C:/sora_no_kiseki_sc_gog_voiced/" (just like in the prior
+        # "Trails in the Sky FC" installer), then this game would be erroneously
+        # installed to "C:/sora_no_kiseki_sc_gog_voiced/app/" rather than
+        # "C:/sora_no_kiseki_sc_gog_voiced/app/". Instead, we extract this
+        # installer to "C:/", which then installs this game to the badly named
+        # "C:/app/" subdirectory, which we then rename to
+        # "C:/sora_no_kiseki_sc_gog_voiced/" for disambiguity. Phew!
         - execute:
             description: Installing "Trails in the Sky SC"...
             file: $CACHE/innoextract/innoextract
-            args: -d "${GAMEDIR}/drive_c/sora_no_kiseki_sc_gog_voiced" "${gog_exe}"
+            args: -d "${GAMEDIR}/drive_c" "${gog_exe}"
+        - rename:
+            description: Repairing "Trails in the Sky SC" installation...
+            src: ${GAMEDIR}/drive_c/app
+            dst: ${GAMEDIR}/drive_c/sora_no_kiseki_sc_gog_voiced
         - extract:
             description: Installing SoraVoice...
             file: $soravoice_zip
@@ -176,7 +191,7 @@ results:
         # utilities, we would need to run this utility here anyway even if this
         # utility was *NOT* a hard prerequisite... which it is, of course.
         - task:
-            description: Configuring "Trails in the Sky"...
+            description: Configuring "Trails in the Sky SC"...
             name: wineexec
-            executable: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/Config.exe
+            executable: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/Config2.exe
             prefix: $GAMEDIR
