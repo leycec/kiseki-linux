@@ -1,6 +1,37 @@
-#FIXME: This installer currently does nothing and is thus fundamentally broken.
-#Why? Because we don't have TitS Sky FC for Steam and thus have no means of
-#testing this. *shrug*
+# The main functionality offered through this script is going to be installation/placement
+# of all the things for the Sora Evolution voices and scripts.
+#
+# Since this game has two versions, and a configuration launcher for each, Steam presents
+# the user with a dialog for selecting what to run when clicking the Play button in Steam.
+#
+# When launching this game from the command line or a steam:// URL, however, it will always
+# launch the DX9 game executable. So launching the game from Lutris doesn't really serve
+# much purpose.
+
+# Configure Steam first before executing this script.
+# Do one of the following to enable Proton Compatiblity layer
+# * Steam Menu -> Settings -> Steam Play -> Advanced -> Enable Steam Play for all other titles
+#    - Run other titles with: Proton 7.0-x (or 6.3-x)
+# OR
+# * Library -> The Legend of Heroes: Trails in the Sky (Right Click) -> Properties
+#    - Compatibility -> Force the use of a specific Steam Play compatiblity tool
+#    - Select Proton 7.0 (or 6.3)
+# Set Launch options to:
+# WINEDLLOVERRIDES="dinput8.dll=n,b" %command%
+
+# Procedure for installation via Lutris
+#  1. Click + (Add Game button)
+#  2. Select "Install from a local install script"
+#  3. Browse to where this script is downloaded and select it.
+#  4. Select Install
+#  5. Browse to all of the files that need to be browsed to, selecting each file accordingly.
+#  6. Lutris will execute Steam to install Trails in the Sky FC.
+#  7. Click through installation dialog in Steam.
+#  8. Wait for the download to complete.
+#  9. Wait for the other processes in Lutris to complete, and Lutris returns saying everything is OK.
+# 10. Lutris will run Config.exe.
+# 10. Configure the game as desired, and save.
+# 11. Start the game from Steam.
 
 results:
   - name: "The Legend of Heroes: Trails in the Sky"
@@ -8,31 +39,105 @@ results:
     game_slug: sora-no-kiseki-fc-steam-voiced
     slug: sora-no-kiseki-fc-steam-voiced-installer
     runner: steam
+    require-binaries: 7z, unzip, dirname
 
     script:
       files:
-        # Manually browsed files, intentionally listed *BEFORE* downloads to
-        # guarantee Lutris requests the user browse these files first.
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # CAUTION: Lutris 0.5.8.3 (and probably other versions as well) has a
+        # critical issue with ordering of assets here. Specifically, if
+        # automated downloads are listed *AFTER* manually browsed files, then
+        # Lutris silently refuses to continue with the installation process
+        # after the user finishes manually browsing those files and presses the
+        # "Confirm" button. Since this is insane, we circumvent this by listing
+        # automated downloads *BEFORE* manually browsed files. See also:
+        #     https://github.com/leycec/kiseki-linux/issues/3
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         # Automated downloads.
-        - lavf: https://github.com/Nevcairiel/LAVFilters/releases/download/0.74.1/LAVFilters-0.74.1-Installer.exe
+        # LAVFilters doesn't appear to be necessary for video playback using Proton 6.3-8+ or 7.0-5+
+        #- lavf_exe: https://github.com/Nevcairiel/LAVFilters/releases/download/0.77.1/LAVFilters-0.77.1-Installer.exe
+        - soravoice_lite_zip: https://github.com/ZhenjianYang/SoraVoice/releases/download/20220120/SoraVoiceLite_20220120.7z
+        - soravoice_scripts_zip: https://github.com/ZhenjianYang/SoraVoiceScripts/releases/download/20180815/en.fc_20171018.7z
+
+        # This forces the game to be installed before continuing
+        # Have to specify a file, so arbitrarily look for the game's configuration executable.
+        - game_cfg_exe: $STEAM:251150:Config.exe
+
+        # Force the installation of proton 7, so that it can be used to create the prefix
+        # for any prefix-centric changes that are necessary.
+        # This may not be necessary as later versions appear to have all the required things already.
+        #- proton_experimental: $STEAM:1493710:proton
+        - proton_7: $STEAM:1887720:proton
+
+        # Separately downloaded assets.
+        # The dummy is necessary, as for some reason, the first of these files gets eaten by Lutris.
+        # The dummy entry doesn't appear in the Lutris UI.
+        - dummy: N/A:Dummy
+        - soravoice_files_zip: "N/A:The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip [1.92GB]"
+        - battle_dat_file: "N/A:ED6_DT1A.dat [66.4MB]"
+        - battle_dir_file: "N/A:ED6_DT1A.dir [17KB]"
 
       game:
+        # This set's the appid property for the game entry.
         appid: 251150
 
       installer:
-        - task:
-            description: Installing Quartz...
-            name: winetricks
-            app: quartz
-            prefix: $GAMEDIR
-        - task:
-            description: Installing "amstream"...
-            name: winetricks
-            app: amstream
-            prefix: $GAMEDIR
-        - task:
-            description: Installing LAVFilters...
-            name: wineexec
-            executable: lavf
-            prefix: $GAMEDIR
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # These proton related commands are expecting the location of the
+        # compadata directory to be located off the parent path of where the
+        # game is installed. If the game is installed in a library located
+        # somewhere other than the default location, these will not be
+        # pointing to the right directory.
+        #
+        # Since newer version of Proton are apparently coming with the needed
+        # libraries, these Proton related activites probably aren't necessary.
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        # Create a proton compatdata directory if one doesn't exist for the game.
+        - execute:
+            command: mkdir -p "$(dirname "${game_cfg_exe}")/../../compatdata/251150"
+        # Run proton to build the prefix accordingly.
+        - execute:
+            command: |
+                STEAM_COMPAT_CLIENT_INSTALL_PATH="" \
+                STEAM_COMPAT_DATA_PATH="$(dirname "${game_cfg_exe}")/../../compatdata/251150" \
+                "${proton_7}" run exit 0
+
+        # Install some winetricks
+        # These appear to be included already in Proton 6.3-8+ and 7.0-5+
+        #- execute:
+        #    command: winetricks prefix="$(dirname "${game_cfg_exe}")/../../compatdata/251150/pfx" quartz amstream
+
+        # Install the LAVFilters into the game's proton prefix.
+        # LAVFilters doesn't appear to be necessary for video playback using Proton 6.3-8+ or 7.0-5+
+        #- execute:
+        #    command: |
+        #        STEAM_COMPAT_CLIENT_INSTALL_PATH="" \
+        #        STEAM_COMPAT_DATA_PATH="$(dirname "${game_cfg_exe}")/../../compatdata/251150" \
+        #        "${proton_7}" run $lavf_exe /SP- /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+
+        # Asset placement
+
+        # Extract the soravoice files the old-fashioned way
+        - execute:
+            command: 7z x "${soravoice_scripts_zip}" -o"$(dirname "${game_cfg_exe}")/voice" -y
+
+        # Extract the soravoice files the old-fashioned way
+        - execute:
+            command: 7z x "${soravoice_lite_zip}" -o"$(dirname "${game_cfg_exe}")" -y
+
+        # Extract the soravoice files the old-fashioned way
+        - execute:
+            command: unzip -o "${soravoice_files_zip}" -d "$(dirname "${game_cfg_exe}")"
+
+        # Copy in the Japanese Battle voice files.
+        - execute:
+            command: cp -v "${battle_dat_file}" "${battle_dir_file}" "$(dirname "${game_cfg_exe}")"
+
+        # Once done, run specifically the DX8 Configuration for the user to select settings.
+        - execute:
+            command: |
+                STEAM_COMPAT_CLIENT_INSTALL_PATH="" \
+                STEAM_COMPAT_DATA_PATH="$(dirname "${game_cfg_exe}")/../../compatdata/251150" \
+                "${proton_7}" run "${game_cfg_exe}"
