@@ -127,9 +127,8 @@ Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
    installation?_>`__. While you're here, please do:
 
    * Change the **resolution** to the native resolution of your monitor. For
-     example, `@leycec <leycec_>`__ changes the resolution to 1920x1080 to
-     match the native resolution of his antiquated Gateway monitor. Do not mock
-     him.
+     example, `@leycec <leycec_>`__ changes the resolution to 1920x1080 to match
+     the native resolution of his antiquated Gateway monitor. Do not mock him.
    * Enable **(Borderless) Window Mode.** When disabled, the keyboard arrow keys
      (and thus joystick support mapping onto those keys) will be largely
      dysfunctional. Interestingly, Windows users suffer the same issue.
@@ -147,14 +146,14 @@ Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
 #. Select the **same resolution** that you configured above (i.e., the native
    resolution of your monitor).
 #. (\ *Recommended*\ ) Enable **joystick support.** Sadly, Japanese voice acting
-   and native joystick support is mutually exclusive. You can either have one or
-   you can have the other. You of course want Japanese voice acting, which means
-   you can't have native joystick support. So what do you do? You complain
+   and native joystick support is mutually exclusive. You can have one or you
+   can have the other. You (of course) want Japanese voice acting, which means
+   you cannot have native joystick support. So what can you do? You can complain
    bitterly to anyone that might listen! How'd that go? Not so well? Then read.
    Although the game no longer provides native joystick support (...because we
    broke it), that's no obstacle to in-game progress. Just manually install a
    **Linux joystick mapping utility.** Many exist, but the one most Linux gamers
-   care about in 2022 is AntiMicroX_:
+   care about in 2023 is AntiMicroX_:
 
    #. `Install AntiMicroX <AntiMicroX installation_>`__.
    #. Run **AntiMicroX.**

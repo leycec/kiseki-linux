@@ -57,9 +57,9 @@ results:
 
       game:
         # This game provides two alternate main executables:
-        # * "ed6_win.exe", implemented with DirectX 8. This version is known to
+        # * "ed6_win2.exe", implemented with DirectX 8. This version is known to
         #   work well with no issues.
-        # * "ed6_win_DX9.exe", implemented with DirectX 9. This version is
+        # * "ed6_win2_DX9.exe", implemented with DirectX 9. This version is
         #   known to exhibit severe issues, including:
         #   * Silent failure at startup when DXVK is enabled, which it is by
         #     default. Although this is of course trivially circumvented via
@@ -69,7 +69,7 @@ results:
         #     dialog text displayed over an otherwise black background.
         #   * Menu scaling issues at higher resolutions unless the "High-Res
         #     Assets" option is explicitly disabled via the "Config.exe" file.
-        exe: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/ed6_win.exe
+        exe: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/ed6_win2.exe
         arch: win32
         prefix: $GAMEDIR
 
