@@ -79,7 +79,11 @@ results:
         # When allowed to create a native window, this game silently fails on
         # the first switch to a different window, where "silently fails" means
         # "refuses to either redraw itself or respond to HID events."
-        desktop: true
+        #
+        # Note that the name of this setting (and *ONLY* this setting) must be
+        # capitalized. We don't make the rules. We only complain about them.
+        Desktop: true
+
         overrides:
           # SoraVoice supports two alternate patched audio shared libraries:
           # * "dinput8.dll", provided by the $soravoice_zip archive downloaded

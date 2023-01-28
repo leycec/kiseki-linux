@@ -1,19 +1,23 @@
-# The main functionality offered through this script is going to be installation/placement
-# of all the things for the Sora Evolution voices and scripts.
+# The main functionality offered through this script is going to be
+# installation/placement of all the things for the Sora Evolution voices and
+# scripts.
 #
-# Since this game has two versions, and a configuration launcher for each, Steam presents
-# the user with a dialog for selecting what to run when clicking the Play button in Steam.
+# Since this game has two versions, and a configuration launcher for each, Steam
+# presents the user with a dialog for selecting what to run when clicking the
+# Play button in Steam.
 #
-# When launching this game from the command line or a steam:// URL, however, it will always
-# launch the DX9 game executable. So launching the game from Lutris doesn't really serve
-# much purpose.
+# When launching this game from the command line or a steam:// URL, however, it
+# will always launch the DX9 game executable. So launching the game from Lutris
+# doesn't really serve much purpose.
 
 # Configure Steam first before executing this script.
 # Do one of the following to enable Proton Compatiblity layer
-# * Steam Menu -> Settings -> Steam Play -> Advanced -> Enable Steam Play for all other titles
+# * Steam Menu -> Settings -> Steam Play -> Advanced -> Enable Steam Play for
+#   all other titles
 #    - Run other titles with: Proton 7.0-x (or 6.3-x)
 # OR
-# * Library -> The Legend of Heroes: Trails in the Sky (Right Click) -> Properties
+# * Library -> The Legend of Heroes: Trails in the Sky (Right Click) ->
+#   Properties
 #    - Compatibility -> Force the use of a specific Steam Play compatiblity tool
 #    - Select Proton 7.0 (or 6.3)
 # Set Launch options to:
@@ -24,11 +28,13 @@
 #  2. Select "Install from a local install script"
 #  3. Browse to where this script is downloaded and select it.
 #  4. Select Install
-#  5. Browse to all of the files that need to be browsed to, selecting each file accordingly.
+#  5. Browse to all of the files that need to be browsed to, selecting each file
+#     accordingly.
 #  6. Lutris will execute Steam to install Trails in the Sky FC.
 #  7. Click through installation dialog in Steam.
 #  8. Wait for the download to complete.
-#  9. Wait for the other processes in Lutris to complete, and Lutris returns saying everything is OK.
+#  9. Wait for the other processes in Lutris to complete, and Lutris returns
+#     saying everything is OK.
 # 10. Lutris will run Config.exe.
 # 10. Configure the game as desired, and save.
 # 11. Start the game from Steam.
@@ -83,8 +89,8 @@ results:
         appid: 251150
 
       installer:
-        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # These proton related commands are expecting the location of the
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # These Proton-related commands are expecting the location of the
         # compadata directory to be located off the parent path of where the
         # game is installed. If the game is installed in a library located
         # somewhere other than the default location, these will not be
@@ -92,7 +98,7 @@ results:
         #
         # Since newer version of Proton are apparently coming with the needed
         # libraries, these Proton related activites probably aren't necessary.
-        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         # Create a proton compatdata directory if one doesn't exist for the game.
         - execute:
@@ -135,7 +141,8 @@ results:
         - execute:
             command: cp -v "${battle_dat_file}" "${battle_dir_file}" "$(dirname "${game_cfg_exe}")"
 
-        # Once done, run specifically the DX8 Configuration for the user to select settings.
+        # Once done, run specifically the DX8 Configuration for the user to
+        # select settings.
         - execute:
             command: |
                 STEAM_COMPAT_CLIENT_INSTALL_PATH="" \

@@ -1,4 +1,4 @@
-.. # ------------------( SYNOPSIS                           )------------------
+.. # ------------------( SYNOPSIS                            )------------------
 
 .. image:: https://user-images.githubusercontent.com/217028/103398869-63d2ab00-4b36-11eb-948a-e32a947952c6.png
    :align: center
@@ -41,7 +41,7 @@ new_>`__.
     These installers are **not officially endorsed** by Falcom_, `Nippon Ichi
     Software (NIS)`_, or XSEED_. We still love you, `Toshihiro Kondo`_.
 
-.. # ------------------( TABLE OF CONTENTS                  )------------------
+.. # ------------------( TABLE OF CONTENTS                   )------------------
 .. # Blank line. By default, Docutils appears to only separate the subsequent
 .. # table of contents heading from the prior paragraph by less than a single
 .. # blank line, hampering this table's readability and aesthetic comeliness.
@@ -56,10 +56,10 @@ new_>`__.
 .. contents:: **Contents**
    :local:
 
-.. # ------------------( DESCRIPTION                        )------------------
+.. # ------------------( DESCRIPTION                         )------------------
 
-Installation
-============
+Brace Yourself!
+###############
 
 This repository currently hosts installers for only some of the available
 *Kiseki* titles. As we continue playing through the series ourselves,
@@ -68,7 +68,7 @@ additional installers for later *Kiseki* titles will be added.
 We apologize for the inconvenience and hope you enjoy your stay in Liberl.
 
 The Legend of Heroes: Trails in the Sky (Sora no Kiseki FC)
------------------------------------------------------------
+***********************************************************
 
 `The Legend of Heroes: Trails in the Sky <Kiseki sora fc_>`__ (Japan: *Eiyuu
 Densetsu: Sora no Kiseki First Chapter (FC)*,『英雄伝説 空の軌跡』) is the
@@ -77,18 +77,38 @@ PlayStation Portable (PSP) and subsequently ported first to the PlayStation
 Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
 2016 via both GOG_ and Steam_.
 
-    These instructions assume you've purchased and downloaded the `Good Old
-    Games (GOG) version <sora fc GOG_>`__. We hope to add an equivalent Steam
-    installer at a later date. Until then, our apologies, fam.
+A journey of a thousand trash mobs begins with a single sketchy letter from your
+JRPG Dad. This is that letter.
 
-#. `Download and install Lutris <Lutris_>`__.
+Pre-installation
+================
+
+.. _sora fc prepare:
+
+It is dangerous to go alone. Before you venture forth into the deceptively
+dangerous world of Liberl, there are things you must do... *unspeakable things.*
+
+#. Please financially support Falcom_, NIS_, and XSEED_ by legally purchasing
+   *The Legend of Heroes: Trails in the Sky* from either:
+
+   * **(Recommended)** `Good Old Games (GOG) <sora fc GOG_>`__. Our GOG
+     installer is fully automated and does everything for you. (Estelle dances
+     the happy stick dance.)
+   * **(Nightmare Mode)** `Steam <sora fc Steam_>`__. Our Steam installer is
+     only partially automated. Lutris only partially integrates with Steam. If
+     you purchase the Steam version, you'll need to do a bit more work. But
+     worry not! We walk you through this trying ordeal that could break you.
+     (Joshua frowns. The sound of two swords unsheathing is heard.)
+
+#. `Download and install Lutris <Lutris_>`__ (if you haven't already).
 #. Download **Japanese dialogue voices** converted from the *Evolution* Vita
    port: [#sora-fc-dialogue]_
 
    #. `Browse to this MEGA-hosted filelocker folder <MEGA sora fc dialogue
       voices folder_>`__.
    #. Download *only* the **1.92GB** file named
-      ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files 20180518 Update.zip``.
+      ``The Legend of Heroes - Trails in the Sky FC - Evolution Voices Files
+      20180518 Update.zip``.
 
 #. Download **Japanese battle voices** converted from the original PSP release:
    [#sora-fc-battle]_
@@ -98,57 +118,165 @@ Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
    #. Download the **66.4MB** file named ``ED6_DT1A.dat``.
    #. Download the **17KB** file named ``ED6_DT1A.dir``.
 
-#. Download our `well-tested Lutris GOG installer <local sora fc GOG_>`__.
-#. Open a terminal to the directory containing that file.
-#. **Close** Lutris (if Lutris is already open).
-#. Copy-and-paste this command into that terminal:
+Installation: Go, Go, Go!
+=========================
 
-            lutris -i sora-no-kiseki-fc-gog-voiced.yml
+Pick your poisonous storefront.
+
+Good Old Games (GOG)
+--------------------
+
+**So.** You've purchased *The Legend of Heroes: Trails in the Sky* from `Good
+Old Games (GOG) <sora fc GOG_>`__ and `obeyed the pre-installation instructions
+above <sora fc prepare_>`__. Good. Let's continue, fam.
+
+#. Run **Lutris.**
+#. Either:
+
+  * **(Recommended)** Run our automagic installer hosted at the Lutris_ website:
+    :superscript:`^_^`
+
+    #. Browse to the `Lutris page for this game <sora fc remote_>`__.
+    #. Click the **Install** button to the right of the *WINE GOG 32-bit
+       DirectX 8 voiced version* installer.
+
+  * **(Nightmare Mode)** Run our manual installer hosted at this GitHub
+    repository: :superscript:`v_v`
+
+    #. Download our `Lutris GOG installer for this game <sora fc GOG local_>`__.
+    #. Return to **Lutris.**
+    #. Click the **+** button in the upper left-hand corner.
+    #. Click **Install from a local install script.**
+    #. Browse to the file you just downloaded.
+    #. Click **OK.**
+
+Steam
+-----
+
+**So.** You've purchased *The Legend of Heroes: Trails in the Sky* from `Steam
+<sora fc Steam_>`__ and `obeyed the pre-installation instructions above <sora fc
+prepare_>`__. Good. Before we begin, however, you should know two things.
+
+    **Lutris cannot directly run this game.** Lutris can only help you patch the
+    Japanese dub into a Steam installation of the game. That's still valuable,
+    as manually applying this patch is *basically* impossible. Still, this does
+    *basically* reduce Lutris to just a glorified mod manager. Barf! Moreover...
+
+    You can only run the game by **selecting the DirectX 8 version of the game
+    from within Steam.** Why? Because this patch breaks the default DirectX 9
+    version of the game, which also explains why Lutris cannot directly run the
+    game. Steam only launches the broken default DirectX 9 version of the game
+    when launched from Lutris. It is sad.
+
+Now that we've gotten that off our hairy chest, let's continue.
+
+#. Run **Steam for Linux.**
+#. Enable **Proton.** You probably already did, but let's make sure. Either:
+
+  * Enable **Proton** globally for *all* games:
+
+    #. Click **Steam Menu,** **Settings,** **Steam Play,** **Advanced,** and
+       **Enable Steam Play for all other titles.**
+    #. Under *Run other titles with:*, select your **preferred Proton version**
+       Proton (e.g., Proton 7.0-x, Proton 6.3-x).
+
+  * Enable **Proton** locally only for *this* game:
+
+    #. Click **Library.**
+    #. Right-click **The Legend of Heroes: Trails in the Sky.**
+    #. Click **Properties,** **Compatibility,** and **Force the use of a
+       specific Steam Play compatiblity tool.**
+    #. Select your **preferred Proton version** (e.g., Proton 7.0-x, Proton
+       6.3-x).
+
+#. Click **Library.**
+#. Right-click **The Legend of Heroes: Trails in the Sky.**
+#. Set **Launch options** to:
+
+   .. code-block:: bash
+
+      WINEDLLOVERRIDES="dinput8.dll=n,b" %command%
+
+#. Run **Lutris.**
+#. Either:
+
+  * **(Recommended)** Run our automagic installer hosted at the Lutris_ website:
+    :superscript:`^_^`
+
+    #. Browse to the `Lutris page for this game <sora fc remote_>`__.
+    #. Click the **Install** button to the right of the *WINE Steam 32-bit
+       DirectX 8 voiced version* installer.
+
+  * **(Nightmare Mode)** Run our manual installer hosted at this GitHub
+    repository: :superscript:`v_v`
+
+    #. Download our `Lutris Steam installer for this game <sora fc Steam
+       local_>`__.
+    #. Return to **Lutris.**
+    #. Click the **+** button in the upper left-hand corner.
+    #. Click **Install from a local install script.**
+    #. Browse to the file you just downloaded.
+    #. Click **OK.**
+
+Installation: Keep Going!
+=========================
+
+**So.** You have downloaded many things. Your bandwidth is now exhausted and so
+are you... yet, this is only the beginning. A grueling journey that ends with
+you slumped over the keyboard still awaits.
 
 #. Click **Install** twice. Just do it.
-#. **Scroll** the resulting installation window down until you see a list of
-   requested game files.
-#. **Browse** Lutris manually to where each of the requested game files lives.
-   Yes, this takes literally forever. No, it's not our fault. We blame the
-   Erebonian Empire. What *aren't* those bad dudes responsible for!?
+#. **Scroll** down until you see a list of requested game files.
+#. **Browse** Lutris to where you downloaded all of those files. Yes, this takes
+   literally forever. No, it's not our fault. We blame the Erebonian Empire.
+   What *aren't* those bad dudes responsible for!?
 #. Click **Continue.**
-#. **Scroll** the same window back up to watch Lutris leisurely download all of
-   the remaining dependencies.
+#. **Scroll** back up and patiently wait with growing irritation as Lutris
+   *slooowly* downloads each of the remaining dependencies.
 #. **Drink** a concerning amount of liquids while waiting for Lutris to fully
    extract and install these files. Pour one out for your kidneys, bro.
-#. Repeatedly click **Next**, **Install**, and **Finish** when asked to install
-   *LAV Filters* (i.e., the Windows component responsible for rendering in-game
-   videos).
+#. **(GOG Only)** Repeatedly click **Next**, **Install**, and **Finish** when
+   asked to install *LAV Filters* (i.e., the Windows component responsible for
+   displaying in-game videos). In other words, don't bother configuring the
+   installation of these filters; just accept their default configuration. Don't
+   go down the dark rabbit hole of LAV filter configuration. "Just say no."
+
+Post-installation
+=================
+
 #. **Configure** the game appropriately. Towards the end of the installation
    process, this game's configuration utility (i.e., ``Config.exe``) will be
    automagically run. If you accidentally closed it or would merely like to
-   reassess your life choices, you may `manually rerun this utility at any time
+   reassess your life choices, you can `manually rerun this utility at any time
    by obeying the FAQ entry below <How do you reconfigure the game after
    installation?_>`__. While you're here, please do:
 
    * Change the **resolution** to the native resolution of your monitor. For
-     example, `@leycec <leycec_>`__ changes the resolution to 1920x1080 to match
-     the native resolution of his antiquated Gateway monitor. Do not mock him.
+     example, `@leycec <leycec_>`__ changed the resolution to 1920x1080 to match
+     the native resolution of his antiquated Gateway monitor that's mostly just
+     dead pixels. Do not mock him. That only makes him stronger.
    * Enable **(Borderless) Window Mode.** When disabled, the keyboard arrow keys
      (and thus joystick support mapping onto those keys) will be largely
-     dysfunctional. Interestingly, Windows users suffer the same issue.
+     dysfunctional. Interestingly, Windows users suffer the same issue. *Hah!*
    * Enable **Hardware Vertex Shading.** When disabled, performance stutters to
-     a halt within urban environments.
-   * Click **OK** when done.
+     a halt within urban environments. Did we mention there are *lots* of urban
+     environments? Because there are. We hope you enjoy urban environments.
+   * Click **OK.**
 
 #. Click **Close.**
 #. Right-click the **The Legend of Heroes: Trails in the Sky** entry.
 #. Click the **Configure** item.
 #. Click the **Runner options** tab.
 #. **Scroll** down.
+#. Check the **Windowed (virtual desktop)** box (if not already checked).
 #. Click the **down arrow** directly to the right of **Virtual desktop
    resolution.**
 #. Select the **same resolution** that you configured above (i.e., the native
    resolution of your monitor).
-#. (\ *Recommended*\ ) Enable **joystick support.** Sadly, Japanese voice acting
-   and native joystick support is mutually exclusive. You can have one or you
-   can have the other. You (of course) want Japanese voice acting, which means
-   you cannot have native joystick support. So what can you do? You can complain
+#. **(GOG Only)** Enable **joystick support.** Sadly, Japanese voice acting and
+   native joystick support are mutually exclusive. You can have one or you can
+   have the other. You (of course) want Japanese voice acting, which means you
+   cannot have native joystick support. So what can you do? You can complain
    bitterly to anyone that might listen! How'd that go? Not so well? Then read.
    Although the game no longer provides native joystick support (...because we
    broke it), that's no obstacle to in-game progress. Just manually install a
@@ -191,16 +319,25 @@ Vita in 2015 as *Eiyuu Densetsu: Sora no Kiseki FC Evolution* and then to PC in
 
       #. Click **Save.**
       #. Consider uploading your profile to save other users precious lifeforce.
-         Just submit an issue or pull request with your profile and the type of
-         your joystick. We'll do the rest. (Thanks in advance! Go, you.)
+         Just submit an `issue or pull request <local issues_>`__ with your
+         profile and the type of your joystick. We'll do the rest. (Thanks in
+         advance! Go, you.)
 
    #. Keep **AntiMicroX** running in the background, where it will act as a
       daemon process that continually maps (i.e., rebinds) joystick to keyboard
       inputs as you play.
 
-#. Enable Japanese battle voices:
+#. **Run the game.** For:
 
-   #. Run the game.
+   * GOG_, just run the game from within Lutris_ like usual.
+   * Steam_, run the **DirectX 8 version of the game from within Steam.** Do
+     not run the game from within Lutris_ *or* run the DirectX 9 version of the
+     game from within Steam_. If you do either of those things, the game will
+     run *without* Japanese voices. Congrats. You wasted everyone's time.
+     ``</sigh>``
+
+#. Enable **Japanese battle voices**:
+
    #. Open the **Options** menu in-game.
    #. Switch the **Voices** setting to Japanese.
 
@@ -223,10 +360,10 @@ Brace for awesomeness. Your trail begins today.
    wallet for their service to humanity.
 
 Frequently Asked Questions (FAQ)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================
 
 Should I play with a guide?
-+++++++++++++++++++++++++++
+---------------------------
 
 **You should play with a guide** *if* you hope to read all content, which you
 should, because this franchise sports the best writing of any JRPG – and let's
@@ -256,7 +393,7 @@ content. This includes missable:
 Which brings us to the next bold question...
 
 Which guide should I play with?
-+++++++++++++++++++++++++++++++
+-------------------------------
 
 **You should play with** `Kartarius' spoiler-free "Guide and Walkthrough" at
 GameFAQs <Kiseki sora fc faq_>`__, because that's the best guide for any game
@@ -277,7 +414,7 @@ additionally voiced.
 No game has ever worked so hard to hide so much content.
 
 Which difficulty should I play on?
-++++++++++++++++++++++++++++++++++
+----------------------------------
 
 **Hard.** For clarity, let's accurately retranslate this game's four difficulty
 settings into modern parlance:
@@ -316,7 +453,7 @@ non-fun farming for Quartz, food, EXP, or rare gear drops.
 Play on **Hard.** Fun is its own reward. Have fun. Be rewarded. You deserve it.
 
 How do you reconfigure the game after installation?
-+++++++++++++++++++++++++++++++++++++++++++++++++++
+---------------------------------------------------
 
 **Great question!** We're so glad you asked. You may have seen that our
 installer automagically ran this game's configuration utility (i.e.,
@@ -347,12 +484,12 @@ huh? Huh? Easy! Just:
 You're welcome.
 
 The Legend of Heroes: Trails in the Sky SC (Sora no Kiseki SC)
---------------------------------------------------------------
+**************************************************************
 
 *To be announced...*
 
 See Also
-========
+########
 
 If you enjoy this, you might also enjoy:
 
@@ -365,55 +502,33 @@ If you enjoy this, you might also enjoy:
   execution of the *[Réalta Nua]* variant of the seminal `shounen chuunibyou
   <chuuni_>`__ visual novel `Fate/stay night`_.
 
-.. # ------------------( LINKS ~ falcom                     )------------------
+.. # ------------------( LINKS ~ kiseki                      )------------------
 .. _Falcom:
    https://en.wikipedia.org/wiki/Nihon_Falcom
-.. _Toshihiro Kondo:
-   https://www.gamasutra.com/view/feature/6585/a_30_year_fantasy_the_story_of_.php
-
-.. # ------------------( LINKS ~ falcom : kiseki            )------------------
-.. _Kiseki:
-   https://en.wikipedia.org/wiki/Trails_(series)
-
-.. # ------------------( LINKS ~ falcom : kiseki : fc       )------------------
-.. _Kiseki sora fc:
-   https://en.wikipedia.org/wiki/The_Legend_of_Heroes:_Trails_in_the_Sky
-.. _Kiseki sora fc faq:
-   https://gamefaqs.gamespot.com/pc/979866-the-legend-of-heroes-trails-in-the-sky/faqs/79398
-.. _Kiseki sora fc DS4 AntiMicroX profile:
-   https://raw.githubusercontent.com/leycec/kiseki-linux/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-ps4.gamecontroller.amgp
-
-.. # ------------------( LINKS ~ falcom : kiseki : soft     )------------------
 .. _Geofront:
    https://geofront.esterior.net
+.. _Kiseki:
+   https://en.wikipedia.org/wiki/Trails_(series)
+.. _Nippon Ichi Software (NIS):
+   https://nisamerica.com
+.. _NIS:
+   https://nisamerica.com
+.. _Toshihiro Kondo:
+   https://www.gamasutra.com/view/feature/6585/a_30_year_fantasy_the_story_of_.php
 .. _SoraVoice:
    https://github.com/ZhenjianYang/SoraVoice
+.. _XSEED:
+   https://www.xseedgames.com
 .. _Zhenjian Yang:
    https://github.com/ZhenjianYang
 
-.. # ------------------( LINKS ~ falcom : publisher         )------------------
-.. _Nippon Ichi Software (NIS):
-   https://nisamerica.com
-.. _XSEED:
-   https://www.xseedgames.com
-
-.. # ------------------( LINKS ~ filelocker : sora fc       )------------------
-.. _MEGA sora fc dialogue voices folder:
-   https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
-.. _MEGA sora fc battle voices folder:
-   https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/40FgxYaA
-
-.. # ------------------( LINKS ~ lutris                     )------------------
+.. # ------------------( LINKS ~ lutris                      )------------------
 .. _Lutris:
    https://lutris.net
 
-.. # ------------------( LINKS ~ leycec                     )------------------
+.. # ------------------( LINKS ~ leycec                      )------------------
 .. _leycec:
    https://github/leycec
-
-.. # ------------------( LINKS ~ leycec : other             )------------------
-.. _chuuni:
-   https://forums.fuwanovel.net/topic/1820-chuuni-what-is-this-genre
 .. _leycec Aokana:
    https://github.com/leycec/aokana-linux
 .. _leycec Fate/stay night:
@@ -422,20 +537,22 @@ If you enjoy this, you might also enjoy:
    https://nekonyansoft.com/shop/product/22
 .. _Fate/stay night:
    https://typemoon.fandom.com/wiki/Fate/stay_night
+.. _chuuni:
+   https://forums.fuwanovel.net/topic/1820-chuuni-what-is-this-genre
 
-.. # ------------------( LINKS ~ linux                      )------------------
+.. # ------------------( LINKS ~ linux                       )------------------
 .. _WINE:
    https://www.winehq.org
 .. _Proton:
    https://github.com/ValveSoftware/Proton
 
-.. # ------------------( LINKS ~ linux : antimicrox         )------------------
+.. # ------------------( LINKS ~ linux : antimicrox          )------------------
 .. _AntiMicroX:
    https://github.com/AntiMicroX/antimicrox
 .. _AntiMicroX installation:
    https://github.com/AntiMicroX/antimicrox#installation
 
-.. # ------------------( LINKS ~ local                      )------------------
+.. # ------------------( LINKS ~ local                       )------------------
 .. _local issues:
    https://github.com/leycec/kiseki-linux/issues
 .. _local issue new:
@@ -443,16 +560,30 @@ If you enjoy this, you might also enjoy:
 .. _local pull requests:
    https://github.com/leycec/kiseki-linux/pulls
 
-.. # ------------------( LINKS ~ local : script             )------------------
-.. _local sora fc GOG:
-   https://github.com/leycec/kiseki-linux/raw/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-gog-voiced.yml
-
-.. # ------------------( LINKS ~ store : gog                )------------------
+.. # ------------------( LINKS ~ store                       )------------------
 .. _GOG:
    https://www.gog.com
-.. _sora fc GOG:
-   https://www.gog.com/game/the_legend_of_heroes_trails_in_the_sky
-
-.. # ------------------( LINKS ~ store : steam              )------------------
 .. _Steam:
    https://store.steampowered.com
+
+.. # ------------------( LINKS ~ game : sora fc              )------------------
+.. _Kiseki sora fc:
+   https://en.wikipedia.org/wiki/The_Legend_of_Heroes:_Trails_in_the_Sky
+.. _Kiseki sora fc faq:
+   https://gamefaqs.gamespot.com/pc/979866-the-legend-of-heroes-trails-in-the-sky/faqs/79398
+.. _Kiseki sora fc DS4 AntiMicroX profile:
+   https://raw.githubusercontent.com/leycec/kiseki-linux/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-ps4.gamecontroller.amgp
+.. _MEGA sora fc dialogue voices folder:
+   https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/U1933IaT
+.. _MEGA sora fc battle voices folder:
+   https://mega.nz/folder/QkFDgLBC#UiLo3rUekisptpzONidpmw/folder/40FgxYaA
+.. _sora fc GOG:
+   https://www.gog.com/game/the_legend_of_heroes_trails_in_the_sky
+.. _sora fc Steam:
+   https://store.steampowered.com/app/251150/The_Legend_of_Heroes_Trails_in_the_Sky
+.. _sora fc GOG local:
+   https://github.com/leycec/kiseki-linux/raw/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-gog-voiced.yml
+.. _sora fc Steam local:
+   https://github.com/leycec/kiseki-linux/raw/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-steam-voiced.yml
+.. _sora fc remote:
+   https://github.com/leycec/kiseki-linux/raw/main/lutris/2004-sora_no_kiseki_fc/sora-no-kiseki-fc-gog-voiced.yml

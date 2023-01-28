@@ -73,13 +73,26 @@ results:
         arch: win32
         prefix: $GAMEDIR
 
+        #FIXME: This currently appears to do nothing despite being documented.
+        #Once this works, also do this for the original game, please.
+        # List of one or more supplementary executables to be displayed as well.
+        launch_configs:
+          - exe: $GAMEDIR/drive_c/sora_no_kiseki_sc_gog_voiced/Config2.exe
+            name: Configuration Utility
+            arch: win32
+            prefix: $GAMEDIR
+
       wine:
-        # This game behaves substantially better when confined to a WINE
-        # Virtual Desktop (ideally of the same resolution as the host system).
-        # When allowed to create a native window, this game silently fails on
-        # the first switch to a different window, where "silently fails" means
+        # This game behaves substantially better when confined to a WINE Virtual
+        # Desktop (ideally of the same resolution as the host system). When
+        # allowed to create a native window, this game silently fails on the
+        # first switch to a different window, where "silently fails" means
         # "refuses to either redraw itself or respond to HID events."
-        desktop: true
+        #
+        # Note that the name of this setting (and *ONLY* this setting) must be
+        # capitalized. We don't make the rules. We only complain about them.
+        Desktop: true
+
         overrides:
           # SoraVoice supports two alternate patched audio shared libraries:
           # * "dinput8.dll", provided by the $soravoice_zip archive downloaded
@@ -92,6 +105,14 @@ results:
           # Force this game to use the former library rather than WINE's
           # builtin Linux-specific emulation of this library.
           dinput8: native
+
+        # # Although this game successfully installs and configures itself under
+        # # modern versions of WINE >= 7.0, this game itself refuses to run under
+        # # the same versions. Inexplicably, *NO* command-line errors are printed.
+        # #
+        # # See also this list of supported Lutris runners:
+        # #     https://lutris.net/api/runners
+        # version: lutris-6.21-6-x86_64
 
       installer:
         - task:
