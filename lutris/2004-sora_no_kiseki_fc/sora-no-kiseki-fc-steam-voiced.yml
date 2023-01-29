@@ -100,6 +100,11 @@ results:
         # libraries, these Proton related activites probably aren't necessary.
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+        # Prevent automated moderation on the Lutris site from complaining that
+        # the "dummy" file declared above is *NOT* referenced by this installer:
+        #     File dummy is referenced but not used anywhere
+        - execute:
+            command: echo "${dummy}"
         # Create a proton compatdata directory if one doesn't exist for the game.
         - execute:
             command: mkdir -p "$(dirname "${game_cfg_exe}")/../../compatdata/251150"

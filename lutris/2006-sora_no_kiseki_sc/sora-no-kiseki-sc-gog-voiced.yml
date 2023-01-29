@@ -14,6 +14,23 @@ results:
     slug: sora-no-kiseki-sc-gog-voiced-installer
     runner: wine
 
+    #FIXME: Note that users must manually run this command *AFTER* running this
+    #script to copy saves from FC to SC from their top-level Lutris directory
+    #(e.g., "~/Games/Lutris/"):
+    #    $ cp -R \
+    #        sora-no-kiseki-fc-gog-voiced/drive_c/users/${USER}/Saved\ Games/FALCOM/ED6 \
+    #        sora-no-kiseki-sc-gog-voiced/drive_c/users/${USER}/Saved\ Games/FALCOM/
+    #
+    #If you did this right, then the game will explicitly tell you that it found
+    #save data:
+    #    Trails in the Sky save data found. Load data?
+    #    Data must be saved after the last boss.
+    #    Yes
+    #    No
+    #
+    #*ALWAYS SAY "Yes."* This is no downside and considerable upside (e.g.,
+    #additional conversations and meaningful items on start).
+
     script:
       files:
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

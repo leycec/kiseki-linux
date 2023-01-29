@@ -204,7 +204,7 @@ Now that we've gotten that off our hairy chest, let's continue.
     :superscript:`^_^`
 
     #. Browse to the `Lutris page for this game <sora fc remote_>`__.
-    #. Click the **Install** button to the right of the *WINE Steam 32-bit
+    #. Click the **Install** button to the right of the *WINE Steam Proton
        DirectX 8 voiced version* installer.
 
   * **(Nightmare Mode)** Run our manual installer hosted at this GitHub
